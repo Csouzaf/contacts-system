@@ -2,14 +2,14 @@ using Microsoft.EntityFrameworkCore;
 namespace api.Models
 
 {
-    public class HomeDbContextModel : DbContext
+    public class UsersDbContextModel : DbContext
     {
-        public HomeDbContextModel(DbContextOptions<HomeDbContextModel> options) : base(options)
+        public UsersDbContextModel(DbContextOptions<UsersDbContextModel> options) : base(options)
         {
 
         }
 
-        public DbSet<HomeUser> homeUsers { get; set; }
+        public DbSet<UsersModel> usersModels { get; set; }
 
           protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

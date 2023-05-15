@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {}
+    "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {}
   },
   "projects": {
-    "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {
+    "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
+        "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
+        "projectPath": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
         "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-        "outputPath": "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\obj\\",
+        "outputPath": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddEntityFrameworkSqlServer().AddDbContext<HomeDbContextModel>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database"))
+builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
 builder.Services.AddCors(options => 
