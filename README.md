@@ -8,7 +8,7 @@
   
   - Configurar o Program.cs para o VScode para evitar o Cors e fazer a configuração com Sql Server utilizando: 
   
-builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>(
+"builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
             builder.AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader());
-    });
+    });"
   
   No appsettings.json, finaliza a construção da conexão com:
   
