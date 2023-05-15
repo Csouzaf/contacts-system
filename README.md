@@ -10,9 +10,9 @@
   
     "builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-    );
+    );"
 
-    builder.Services.AddCors(options => 
+    "builder.Services.AddCors(options => 
     {
         options.AddDefaultPolicy(builder => 
         {
@@ -21,6 +21,9 @@
                        .AllowAnyMethod()
                        .AllowAnyHeader());
         });"
+  
+  //Após o app.UseStaticFiles();
+  "app.UseCors("AllowAnyOrigin");"
   
   No appsettings.json, finaliza a construção da conexão com:
   
