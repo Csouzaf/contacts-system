@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {}
+    "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {
+    "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
+        "projectUniqueName": "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
+        "projectPath": "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
         "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\obj\\",
+        "outputPath": "d:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -37,6 +37,24 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
