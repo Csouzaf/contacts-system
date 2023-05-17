@@ -14,9 +14,9 @@ namespace api.Controllers
         {
             _context = context;
 
-            _context.usersModels.AddAsync(new UsersModel{ Id = "1", Nome = "Caique", Email = "teste@hotmail.com"});
+            _context.usersModels.Add(new UsersModel{ Id = "14", Nome = "Caiques", Email = "teste@hotmail.com", Telefone = "+99999919"});
 
-            _context.usersModels.AddAsync(new UsersModel{ Id = "2", Nome = "CaiqueS", Email = "teste1@hotmail.com"});
+            _context.usersModels.Add(new UsersModel{ Id = "15", Nome = "CaiqueSs", Email = "teste1@hotmail.com", Telefone = "+99999999" });
 
             _context.SaveChanges();
         }
