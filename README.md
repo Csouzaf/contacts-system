@@ -12,32 +12,32 @@
      options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-builder.Services.AddCors(options =>
-{
-     options.AddDefaultPolicy(builder =>
-     {
-         options.AddPolicy("AllowAnyOrigin", builder =>
-             builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
-     });
+      builder.Services.AddCors(options =>
+      {
+           options.AddDefaultPolicy(builder =>
+           {
+               options.AddPolicy("AllowAnyOrigin", builder =>
+                   builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+           });
 
-});
+      });
   
+
+      //After app.UseStaticFiles();
+      app.UseCors("AllowAnyOrigin");
+
+      In appsettings.json, finish building the connection with:
+
+        "ConnectionStrings":{
+          "DefaultConnection":"Server=YourServerName;Database=ContactsSystem;Trusted_Connection=True;Integrated Security=True"
+        },
   
-   //After app.UseStaticFiles();
-   app.UseCors("AllowAnyOrigin");
-  
-   In appsettings.json, finish building the connection with:
-  
-     "ConnectionStrings":{
-       "DefaultConnection":"Server=YourServerName;Database=ContactsSystem;Trusted_Connection=True;Integrated Security=True"
-     },
-  
-   Finally, use dotnet ef migrations add InitialCreate and dotnet ef database update to create and update the tables.
+      Finally, use dotnet ef migrations add InitialCreate and dotnet ef database update to create and update the tables.
   
   2) Inject dependencies between the services and the repository in the controller
  
-  builder.Services.AddScoped<IContactsRepository, ContactsServices>();
+      builder.Services.AddScoped<IContactsRepository, ContactsServices>();
     
     
