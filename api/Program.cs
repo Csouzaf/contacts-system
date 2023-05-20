@@ -1,4 +1,6 @@
 using api.Models;
+using api.Repository;
+using api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,8 @@ builder.Services.AddCors(options =>
     });
 
 });
+
+builder.Services.AddScoped<IContactsRepository, ContactsServices>();
 
 var app = builder.Build();
 

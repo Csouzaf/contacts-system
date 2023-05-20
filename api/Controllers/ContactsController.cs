@@ -1,4 +1,5 @@
 using api.Models;
+using api.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,26 +9,21 @@ namespace api.Controllers
     [Route("api/[controller]")]
     public class ContactsController : Controller
     {
-        private readonly UsersDbContextModel _context;
+        private readonly IContactsRepository _icontactsRepository;
 
-        public ContactsController(UsersDbContextModel context)
+        public ContactsController(IContactsRepository iContactsRepository)
         {
-            _context = context;
-
-            _context.usersModels.Add(new UsersModel{ Id = "14", Nome = "Caiques", Email = "teste@hotmail.com", Telefone = "+99999919"});
-
-            _context.usersModels.Add(new UsersModel{ Id = "15", Nome = "CaiqueSs", Email = "teste1@hotmail.com", Telefone = "+99999999" });
-
-            _context.SaveChanges();
+            _icontactsRepository = iContactsRepository;
         }
 
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UsersModel>>> getUsers()
+        [HttpPost]
+        public async Task<IActionResult> createUsers([FromBody] UsersModel usersModel)
         {
-            return await _context.usersModels.ToListAsync();
+        //   return await _icontactsRepository.createUser()
+            var createdUsers = await _icontactsRepository.createUser(usersModel);
+            return Ok(createdUsers);
         }
 
-
+        
     }
 }

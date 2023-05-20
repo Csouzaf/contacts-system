@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\csouz\\Downloads\\contacts\\contacts-system-main\\contacts-system\\api\\api.csproj": {}
+    "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\csouz\\Downloads\\contacts\\contacts-system-main\\contacts-system\\api\\api.csproj": {
+    "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\csouz\\Downloads\\contacts\\contacts-system-main\\contacts-system\\api\\api.csproj",
+        "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\csouz\\Downloads\\contacts\\contacts-system-main\\contacts-system\\api\\api.csproj",
+        "projectPath": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\api.csproj",
         "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\csouz\\Downloads\\contacts\\contacts-system-main\\contacts-system\\api\\obj\\",
+        "outputPath": "D:\\OneDrive\\Programação\\Csharp\\Sistema\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"
