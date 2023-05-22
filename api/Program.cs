@@ -13,6 +13,8 @@ builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+builder.Services.AddScoped<IContactsRepository, ContactsServices>();
+
 builder.Services.AddCors(options => 
 {
     options.AddDefaultPolicy(builder => 
@@ -25,7 +27,6 @@ builder.Services.AddCors(options =>
 
 });
 
-builder.Services.AddScoped<IContactsRepository, ContactsServices>();
 
 var app = builder.Build();
 

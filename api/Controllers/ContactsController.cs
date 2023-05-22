@@ -16,14 +16,40 @@ namespace api.Controllers
             _icontactsRepository = iContactsRepository;
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> createUsers([FromBody] UsersModel usersModel)
+        public async Task<IActionResult> createContacts([FromBody] UsersModel usersModel)
         {
-        //   return await _icontactsRepository.createUser()
+        
             var createdUsers = await _icontactsRepository.createUser(usersModel);
             return Ok(createdUsers);
         }
 
-        
+       [HttpPut("{id}")]
+       public async Task<IActionResult> updateContacts(UsersModel usersModel, int id)
+       {
+            try{
+                var update = await _icontactsRepository.updateUser(usersModel, id);
+                return Ok(update);
+            }
+
+            catch(Exception e){
+                return BadRequest(e.Message);
+            }
+            
+       }
+
+       [HttpDelete("{id}")]
+       public async Task<IActionResult> deleteContacts(int id)
+       {
+            try{
+                var delete = await _icontactsRepository.deleteUser(id);
+                return Ok(delete);
+            }
+            catch(Exception e){
+                return BadRequest(e.Message);
+            }
+
+       }
     }
 }
