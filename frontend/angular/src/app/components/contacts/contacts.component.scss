@@ -4,3 +4,13 @@
 .table-main{
   text-align: center;
 }
+
+.alert{
+  display: flex;
+  justify-content: center;
+
+}
+.alert p{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}

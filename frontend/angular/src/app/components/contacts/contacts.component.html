@@ -28,8 +28,8 @@
               <td>@mdo</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                  <a role="button" class="btn btn-outline-primary">Editar</a>
-                  <a role="button" class="btn btn-outline-danger">Remover</a>
+                  <a role="button" class="btn btn-outline-primary" [routerLink]="'/contacts/edit'">Editar</a>
+                  <a role="button" class="btn btn-outline-danger"(click)="showConfirmation = true">Remover</a>
                 </div>
             </td>
             </tr>
@@ -40,8 +40,8 @@
               <td>@fat</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                  <a role="button" class="btn btn-outline-primary">Editar</a>
-                  <a role="button" class="btn btn-outline-danger">Remover</a>
+                  <a role="button" class="btn btn-outline-primary" [routerLink]="'/contacts/edit'" >Editar</a>
+                  <a role="button" class="btn btn-outline-danger"(click)="showConfirmation = true">Remover</a>
                 </div>
             </td>
             </tr>
@@ -51,14 +51,21 @@
               <td>@twitter</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                  <a role="button" class="btn btn-outline-primary">Editar</a>
-                  <a role="button" class="btn btn-outline-danger">Remover</a>
+                  <a role="button" class="btn btn-outline-primary" [routerLink]="'/contacts/edit'">Editar</a>
+                  <a role="button" class="btn btn-outline-danger" (click)="showConfirmation = true">Remover</a>
                 </div>
             </td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <div class="alert" *ngIf="showConfirmation">
+        <p> Tem certeza de que deseja remover este contato?</p>
+
+        <button class="btn btn-danger" (click)="confirmRemove()">Confirmar</button>
+        <button class="btn btn-secondary" (click)="showConfirmation = false">Cancelar</button>
+    </div>
 
   <div>
     <app-footer></app-footer>

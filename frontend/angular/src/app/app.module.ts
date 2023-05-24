@@ -10,6 +10,8 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { CreateContactsComponent } from './components/contacts/create-contacts/create-contacts.component';
+import { EditContactsComponent } from './components/contacts/edit-contacts/edit-contacts.component';
+import { RemoveContactsComponent } from './components/contacts/remove-contacts/remove-contacts.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { CreateContactsComponent } from './components/contacts/create-contacts/c
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    CreateContactsComponent
+    CreateContactsComponent,
+    EditContactsComponent,
+    RemoveContactsComponent
 
   ],
 
