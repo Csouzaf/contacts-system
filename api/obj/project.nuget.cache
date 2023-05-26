@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wd4akrN/qX24oTcg0YjkROKl8ZK/8KlptKt0Z8TDA8f4FNPoYYcABTL6PhPC6emTbyRhTBwMRJNpN4LtpWDGIg==",
+  "dgSpecHash": "PMxBOsRbKXlmSWXmRhUUym+1wjNvaXaX2jDHhnfr01TaRrumE1bSNBCZNiOL5vRwlXMZNKQefj/ULtFKClekOg==",
   "success": true,
-  "projectFilePath": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
+  "projectFilePath": "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\csouz\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

@@ -56,6 +56,14 @@
                 </div>
             </td>
             </tr>
+            <tr *ngFor="let contact of contacts" >
+              <th scope="row">{{ contact.Id }}</th>
+              <td>{{ contact.Nome }}</td>
+              <td>{{ contact.Email }}</td>
+              <td>{{ contact.Telefone }}</td>
+
+            </tr>
+
           </tbody>
         </table>
       </div>
@@ -66,6 +74,7 @@
         <button class="btn btn-danger" (click)="confirmRemove()">Confirmar</button>
         <button class="btn btn-secondary" (click)="showConfirmation = false">Cancelar</button>
     </div>
+
 
   <div>
     <app-footer></app-footer>

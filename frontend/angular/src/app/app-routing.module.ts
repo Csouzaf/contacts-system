@@ -7,7 +7,7 @@ import { EditContactsComponent } from './components/contacts/edit-contacts/edit-
 import { RemoveContactsComponent } from './components/contacts/remove-contacts/remove-contacts.component';
 
 const routes: Routes = [
-  
+
   {path: 'contacts', component: ContactsComponent},
   {path: 'home', component: HomeComponent},
   {path:'', redirectTo: '/home', pathMatch: 'full'},

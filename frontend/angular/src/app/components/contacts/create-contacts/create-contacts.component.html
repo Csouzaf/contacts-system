@@ -7,31 +7,61 @@
 
   <div class="test">
     <div class="mt-5 bg">
-      <form class="m-5" >
 
+      <form class="m-5" [formGroup]="formUsers" (ngSubmit)="sendForm()">
         <div class="col-md-4">
           <label for="inputName" class="form-label">Nome</label>
-          <input type="name" class="form-control" placeholder="Digite o nome do contato"id="inputName">
+          <input type="name" class="form-control" placeholder="Digite o nome do contato"id="inputName" formControlName="Nome">
         </div>
 
         <div class="col-md-4">
           <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" placeholder="Digite o e-mail do contato"id="inputEmail4">
+          <input type="email" class="form-control" placeholder="Digite o e-mail do contato"id="inputEmail4"  formControlName="Email">
         </div>
 
         <div class="col-md-4">
           <label for="inputTel" class="form-label">Celular</label>
-          <input type="tel" class="form-control" placeholder="Digite o celular do contato"id="inputTel">
+          <input type="tel" class="form-control" placeholder="Digite o celular do contato"id="inputTel" formControlName="Telefone">
         </div>
 
         <div class="d-grid gap-2 col-4 mt-3">
-          <button type="submit" class="btn btn-primary btn-lg rounded-4">Criar contato</button>
+          <button type="submit" class="btn btn-primary btn-lg rounded-4" >Criar contato</button>
           <a class="btn btn-secondary btn-lg rounded-4" [routerLink]="'/contacts'">Voltar</a>
         </div>
       </form>
 
+
+      <div class="table-main">
+        <h1>Listagem de Contatos</h1>
+
+        <table class="table" *ngIf="users">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Celular</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let user of users" >
+              <th scope="row">{{ user.Id }}</th>
+              <td>{{ user.Nome }}</td>
+              <td>{{ user.Email }}</td>
+              <td>{{ user.Telefone }}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
+
     </div>
   </div>
+
+
 
 
   <div>

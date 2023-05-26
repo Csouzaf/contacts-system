@@ -2268,11 +2268,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
+      "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
+      "projectPath": "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\api.csproj",
       "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\obj\\",
+      "outputPath": "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"

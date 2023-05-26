@@ -11,7 +11,7 @@ export class ContactsService {
 
     httpOptions =
     {
-      Headers: new HttpHeaders({ 'contenty-type' : 'application/json' } )
+      headers: new HttpHeaders({ 'contenty-type' : 'application/json' } )
     }
 
   constructor(private http: HttpClient) { }
@@ -19,5 +19,10 @@ export class ContactsService {
     getUsers(): Observable<Users[]>
     {
       return this.http.get<Users[]>(this.contactsURL);
+    }
+
+    postUsers(users: Users): Observable<any>
+    {
+      return this.http.post<Users>(this.contactsURL, users, this.httpOptions);
     }
 }
