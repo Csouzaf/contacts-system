@@ -16,6 +16,23 @@ namespace api.Controllers
             _icontactsRepository = iContactsRepository;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UsersModel>>> getAllContacts()
+        {
+            return await _icontactsRepository.findAll();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UsersModel>> getContacts(int id)
+        {
+            UsersModel users = await _icontactsRepository.findById(id);
+
+            if(users == null)
+            {
+                return NotFound();
+            }
+            return users;
+        }
 
         [HttpPost]
         public async Task<IActionResult> createContacts([FromBody] UsersModel usersModel)

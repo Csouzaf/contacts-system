@@ -11,7 +11,7 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(UsersDbContextModel))]
-    [Migration("20230522134112_Migrations")]
+    [Migration("20230601213445_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

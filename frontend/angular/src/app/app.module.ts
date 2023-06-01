@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 
+
 import { EditContactsComponent } from './components/contacts/edit-contacts/edit-contacts.component';
 import { RemoveContactsComponent } from './components/contacts/remove-contacts/remove-contacts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

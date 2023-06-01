@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { Users } from '../Users';
+import { Users } from '../../../../models/Users';
 import { ContactsService } from './../services/contacts.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-contacts',
@@ -11,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class ContactsComponent implements OnInit{
 
-  contacts: Users[] = [];
+  
+  users:Users[] = []
 
 
   constructor(private contactsService : ContactsService, private router: Router){}
@@ -22,18 +23,21 @@ export class ContactsComponent implements OnInit{
     this.router.navigate(['/contacts/remove']);
   }
 
-  receiveNewContact(contact: Users) {
-    this.contacts.push(contact);
+
+  getAll(){
+    this.contactsService.getUsers().subscribe(result => {
+      this.users = result;
+      console.log(this.users)
+
+    })
+
+
   }
 
   ngOnInit(): void {
 
-    this.contactsService.getUsers().subscribe(
-      data => {
-        this.contacts = data
-        console.log(this.contacts)
-      }
-    )
+    this.getAll()
+
   }
 
 }

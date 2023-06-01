@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Users } from '../Users';
+import { Observable, tap } from 'rxjs';
+import { Users } from '../../../../models/Users';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,8 +21,25 @@ export class ContactsService {
       return this.http.get<Users[]>(this.contactsURL);
     }
 
+    getUsersById(id: number): Observable<Users>
+    {
+      const apiUrl = `${this.contactsURL}/${id}`;
+      return this.http.get<Users>(apiUrl);
+    }
+
     postUsers(users: Users): Observable<any>
     {
-      return this.http.post<Users>(this.contactsURL, users, this.httpOptions);
+      return this.http.post<Users>(this.contactsURL, users, this.httpOptions).pipe(tap(result => console.log(result)))
+    }
+
+    updateUsers(users: Users): Observable<any>
+    {
+      return this.http.put<Users>(this.contactsURL, users, this.httpOptions)
+    }
+
+    deleteUsers(id: number): Observable<any>
+    {
+      const apiURL = `${this.contactsURL}/${id}`;
+      return this.http.delete<number>(apiURL, this.httpOptions)
     }
 }

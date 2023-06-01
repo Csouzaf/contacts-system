@@ -11,7 +11,7 @@
       <div class="table-main">
         <h1>Listagem de Contatos</h1>
 
-        <table class="table">
+        <table class="table" *ngIf="users">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -21,48 +21,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                  <a role="button" class="btn btn-outline-primary" [routerLink]="'/contacts/edit'">Editar</a>
-                  <a role="button" class="btn btn-outline-danger"(click)="showConfirmation = true">Remover</a>
-                </div>
-            </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                  <a role="button" class="btn btn-outline-primary" [routerLink]="'/contacts/edit'" >Editar</a>
-                  <a role="button" class="btn btn-outline-danger"(click)="showConfirmation = true">Remover</a>
-                </div>
-            </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                  <a role="button" class="btn btn-outline-primary" [routerLink]="'/contacts/edit'">Editar</a>
-                  <a role="button" class="btn btn-outline-danger" (click)="showConfirmation = true">Remover</a>
-                </div>
-            </td>
-            </tr>
-            <tr *ngFor="let contact of contacts" >
+            <tr *ngFor="let contact of users" >
               <th scope="row">{{ contact.Id }}</th>
               <td>{{ contact.Nome }}</td>
               <td>{{ contact.Email }}</td>
               <td>{{ contact.Telefone }}</td>
-
-            </tr>
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                  <a role="button" class="btn btn-outline-primary" [routerLink]="'/contacts/edit'">Editar</a>
+                  <a role="button" class="btn btn-outline-danger"(click)="showConfirmation = true">Remover</a>
+                </div>
+            </td>
 
           </tbody>
         </table>
@@ -72,7 +41,7 @@
         <p> Tem certeza de que deseja remover este contato?</p>
 
         <button class="btn btn-danger" (click)="confirmRemove()">Confirmar</button>
-        <button class="btn btn-secondary" (click)="showConfirmation = false">Cancelar</button>
+        <button class="btn btn-secondary" (click)="showConfirmation">Cancelar</button>
     </div>
 
 

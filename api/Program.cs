@@ -28,6 +28,8 @@ builder.Services.AddCors(options =>
 });
 
 
+
+
 var app = builder.Build();
 
 
@@ -42,7 +44,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseCors("AllowAnyOrigin");
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseRouting();
 

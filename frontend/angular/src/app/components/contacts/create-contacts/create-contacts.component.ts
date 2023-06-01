@@ -1,8 +1,9 @@
-import { Users } from './../../Users';
+import { Users } from '../../../../../models/Users';
 import { Router } from '@angular/router';
 import { ContactsService } from './../../services/contacts.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-create-contacts',
@@ -11,53 +12,79 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class CreateContactsComponent implements OnInit{
 
-  formUsers: any;
-  users!: Users[];
+  formUsers!: FormGroup;
+  // formUsers!: FormGroup;
+  users: Users[] =[];
+  contacts: Users ={
+    Id: 0,
+    Nome: '',
+    Email: '' ,
+    Telefone: ''
+  }
 
-  constructor(private contactsService: ContactsService, private router: Router){}
-
-
+  constructor(
+    private contactsService: ContactsService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private cdr: ChangeDetectorRef
+    ){}
 
   ngOnInit(): void {
 
-    this.contactsService.getUsers().subscribe(response => {
-      this.users = response;
-    })
-    
-    this.formUsers = new FormGroup({
+    // this.formUsers = new FormGroup({
 
-      Nome: new FormControl(),
-      Email: new FormControl(),
-      Telefone: new FormControl()
+    //   Nome: new FormControl('', Validators.required),
+    //   Email: new FormControl('', Validators.required),
+    //   Telefone: new FormControl('', Validators.required)
+
+    // });
+
+    this.formUsers = this.formBuilder.group({
+      Nome: ['', Validators.required],
+      Email: ['', Validators.required,],
+      Telefone: ['', Validators.required]
     });
 
+    console.log(this.contacts)
+    console.log(this.users)
+
+  }
+
+
+
+
+  getAll(){
+    this.contactsService.getUsers().subscribe(result => {
+      this.users = result;
+      console.log(this.users)
+
+    })
+
+
   }
 
 
-  showConfirmation = false;
+  sendForm(){
 
-  confirmRemove(){
-    this.router.navigate(['/contacts/remove']);
+    const user: Users = this.formUsers.value;
+
+    this.contactsService.postUsers(user).subscribe((result) => {
+
+
+      this.cdr.detectChanges();
+
+      console.log(result);
+
+      // alert("Adicionado");
+
+      this.users.push(user);
+      // this.router.navigate(['/contacts'])
+    })
+
+    // this.contactsService.postUsers(this.contacts).subscribe((resultPost) =>{
+    //   console.log(resultPost)
+    //   this.getAll()
+    // })
   }
 
-
-
-  // ngOnInit() {
-  //   this.sendContacts();
-  // }
-
-  sendForm(): void{
-
-    const contacts: Users = this.formUsers.value;
-
-    this.contactsService.postUsers(contacts).subscribe((response) =>{
-        alert("Adicionado")}
-      // },
-
-      // (error) =>{
-      //   console.error("erro ao criar", error)
-      // }
-    )
-
-  }
 }

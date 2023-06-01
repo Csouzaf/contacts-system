@@ -10,6 +10,11 @@ namespace api.Services
     {
         private readonly UsersDbContextModel _usersDbContextModel;
 
+        public async Task<List<UsersModel>> findAll()
+        {
+            return await _usersDbContextModel.usersModels.ToListAsync();
+        }
+
         public async Task<UsersModel> findById(int id)
         {
             return await _usersDbContextModel.usersModels.FirstOrDefaultAsync(x => x.Id == id);
