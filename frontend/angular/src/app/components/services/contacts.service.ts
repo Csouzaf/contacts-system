@@ -27,7 +27,7 @@ export class ContactsService {
       return this.http.get<Users>(apiUrl);
     }
 
-    postUsers(users: Users): Observable<any>
+    postUsers(users: Users): Observable<Users>
     {
       return this.http.post<Users>(this.contactsURL, users, this.httpOptions).pipe(tap(result => console.log(result)))
     }

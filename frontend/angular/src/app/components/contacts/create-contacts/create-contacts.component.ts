@@ -1,9 +1,10 @@
 import { Users } from '../../../../../models/Users';
 import { Router } from '@angular/router';
 import { ContactsService } from './../../services/contacts.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
+import { UserSharedService } from '../../services/user-shared.service';
 
 @Component({
   selector: 'app-create-contacts',
@@ -13,31 +14,18 @@ import { ChangeDetectorRef } from '@angular/core';
 export class CreateContactsComponent implements OnInit{
 
   formUsers!: FormGroup;
-  // formUsers!: FormGroup;
-  users: Users[] =[];
-  contacts: Users ={
-    Id: 0,
-    Nome: '',
-    Email: '' ,
-    Telefone: ''
-  }
+  users:Users[] = []
+
 
   constructor(
     private contactsService: ContactsService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private userSharedService : UserSharedService
     ){}
 
   ngOnInit(): void {
-
-    // this.formUsers = new FormGroup({
-
-    //   Nome: new FormControl('', Validators.required),
-    //   Email: new FormControl('', Validators.required),
-    //   Telefone: new FormControl('', Validators.required)
-
-    // });
 
     this.formUsers = this.formBuilder.group({
       Nome: ['', Validators.required],
@@ -45,46 +33,26 @@ export class CreateContactsComponent implements OnInit{
       Telefone: ['', Validators.required]
     });
 
-    console.log(this.contacts)
+
     console.log(this.users)
 
   }
-
-
-
-
-  getAll(){
-    this.contactsService.getUsers().subscribe(result => {
-      this.users = result;
-      console.log(this.users)
-
-    })
-
-
-  }
-
 
   sendForm(){
 
     const user: Users = this.formUsers.value;
 
-    this.contactsService.postUsers(user).subscribe((result) => {
-
-
-      this.cdr.detectChanges();
+      this.contactsService.postUsers(user).subscribe((result) => {
 
       console.log(result);
+      this.cdr.detectChanges();
+      alert("Contato adicionado");
+      
+      this.userSharedService.addUsers(user)
+      this.router.navigate(['/contacts'])
 
-      // alert("Adicionado");
-
-      this.users.push(user);
-      // this.router.navigate(['/contacts'])
     })
 
-    // this.contactsService.postUsers(this.contacts).subscribe((resultPost) =>{
-    //   console.log(resultPost)
-    //   this.getAll()
-    // })
   }
 
 }
