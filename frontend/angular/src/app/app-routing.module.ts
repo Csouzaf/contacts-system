@@ -12,8 +12,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path:'', redirectTo: '/home', pathMatch: 'full'},
   {path:'contacts/new', component: CreateContactsComponent},
-  {path:'contacts/edit',component:EditContactsComponent},
-  {path:'contacts/remove', component:RemoveContactsComponent}
+  {path:'contacts/edit/:id',component:EditContactsComponent},
+  {path:'contacts/remove/:id', component:RemoveContactsComponent}
 ]
 @NgModule({
   imports: [

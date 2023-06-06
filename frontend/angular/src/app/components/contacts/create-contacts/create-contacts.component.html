@@ -5,22 +5,20 @@
 
   <h1>Criar contato</h1>
 
-  <div class="test">
-    <div class="mt-5 bg" >
-
-      <form class="m-5"[formGroup]="formUsers" (ngSubmit)= "sendForm()">
+     <form class="m-5"[formGroup]="usersForm" (ngSubmit)= "sendForm()">
         <div class="form-group col-md-4">
-          <label for="inputName" class="form-label">Nome</label>
+          <label  class="form-label">Nome</label>
           <input type="text" class="form-control" name = "inputName" formControlName="Nome" placeholder="Digite o nome do contato"id="inputName" >
         </div>
 
+
         <div class="col-md-4">
-          <label for="inputEmail" class="form-label">Email</label>
+          <label   class="form-label">Email</label>
           <input type="email" class="form-control" name = "inputEmail" formControlName="Email" placeholder="Digite o e-mail do contato"id="inputEmail"  >
         </div>
 
         <div class="col-md-4">
-          <label for="inputTel" class="form-label">Celular</label>
+          <label  class="form-label">Celular</label>
           <input type="tel" class="form-control" name = "inputTel" formControlName="Telefone" placeholder="Digite o celular do contato"id="inputTel" >
         </div>
 
@@ -29,40 +27,32 @@
           <a class="btn btn-secondary btn-lg rounded-4" [routerLink]="'/contacts'">Voltar</a>
         </div>
 
-      <div class="table-main">
-        <h1>Listagem de Contatos</h1>
-      </div>
-
     </form>
 
-    </div>
-  </div>
+    <!-- <div class="table-main">
+      <h1>Listagem de Contatos</h1>
 
-  <!-- <table class="table" *ngIf="users" >
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Email</th>
-        <th scope="col">Celular</th>
-      </tr>
-    </thead>
-    <tbody>
+      <table class="table" *ngIf= "users">
 
-      <tr *ngFor="let contact of users" >
-        <th scope="row">{{ contact .Id }}</th>
-        <td>{{ contact.Nome }}</td>
-        <td>{{ contact.Email }}</td>
-        <td class="">{{ contact.Telefone }}</td>
-      </tr>
-
-    </tbody>
-
-
-  </table> -->
-
-
-
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Celular</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="users.length > 0">
+          <tr *ngFor="let user of users; index as i" >
+            <th scope="row">{{ i }}</th>
+            <td>{{ user.nome }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.telefone }}</td>
+            <td><a [routerLink]="['edit', user.id]">vir</a></td>
+            <td>
+          </tr>
+        </tbody>
+      </table> -->
 
   <div>
     <app-footer></app-footer>

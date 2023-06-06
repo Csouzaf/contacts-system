@@ -34,13 +34,10 @@ namespace api.Services
                  return userModel;
 
             }catch(Exception e){
-                if(e is InvalidCastException || e is FormatException || e is OverflowException)
-                {
-                    throw new BadRequestException("Erro na digitação do tipo. Verifique se está digitando número ou letra no campo certo");
-                }
+                throw new Exception("Não foi possível criar o usuário", e);
                 
             }
-           return null;
+          
         }
 
         public async Task<UsersModel> updateUser(UsersModel usersModel, int id)

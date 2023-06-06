@@ -43,7 +43,7 @@ namespace api.Controllers
         }
 
        [HttpPut("{id}")]
-       public async Task<IActionResult> updateContacts(UsersModel usersModel, int id)
+       public async Task<IActionResult> updateContacts([FromBody] UsersModel usersModel, int id)
        {
             try{
                 var update = await _icontactsRepository.updateUser(usersModel, id);
@@ -52,7 +52,7 @@ namespace api.Controllers
 
             catch(Exception e){
                 return BadRequest(e.Message);
-            }
+            }   
             
        }
 

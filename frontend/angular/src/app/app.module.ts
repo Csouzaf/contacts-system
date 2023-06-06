@@ -15,6 +15,8 @@ import { EditContactsComponent } from './components/contacts/edit-contacts/edit-
 import { RemoveContactsComponent } from './components/contacts/remove-contacts/remove-contacts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateContactsComponent } from './components/contacts/create-contacts/create-contacts.component';
+import { UserSharedService } from './components/services/user-shared.service';
+import { ContactsService } from './components/services/contacts.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,7 @@ import { CreateContactsComponent } from './components/contacts/create-contacts/c
   ],
 
 
-  providers: [],
+  providers: [HttpClientModule, ContactsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

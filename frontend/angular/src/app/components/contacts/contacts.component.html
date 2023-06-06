@@ -7,16 +7,17 @@
     <div class="m-4 d-grid gap-2 d-md-flex justify-content-md-start">
       <a class="btn btn-primary rounded-4" role="button" [routerLink]="'/contacts/new'">Adicionar Novo Contato</a>
     </div>
-<!-- contacts.component.html
-<app-create-contacts (usersOutput)="contactCreated($event)"></app-create-contacts> -->
+
+
 
       <div class="table-main">
         <h1>Listagem de Contatos</h1>
 
-        <table class="table" *ngIf="users">
+        <table class="table" *ngIf="users" >
+
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">id</th>
               <th scope="col">Nome</th>
               <th scope="col">Email</th>
               <th scope="col">Celular</th>
@@ -24,32 +25,33 @@
           </thead>
           <tbody>
             <tr *ngFor="let contact of users" >
-              <th scope="row">{{ contact.Id }}</th>
-              <td>{{ contact.Nome }}</td>
-              <td>{{ contact.Email }}</td>
-              <td>{{ contact.Telefone }}</td>
+              <th scope="row">{{ contact.id }}</th>
+              <td>{{ contact.nome }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.telefone }}</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                  <a role="button" class="btn btn-outline-primary" [routerLink]="'/contacts/edit'">Editar</a>
-                  <a role="button" class="btn btn-outline-danger"(click)="showConfirmation = true">Remover</a>
+                  <button class="btn btn-outline-primary" [routerLink]="['edit', contact.id]">Editar</button>
+                  <button role="button" class="btn btn-outline-danger"(click)="showConfirmation = true">Remover</button>
                 </div>
-            </td>
+                <div class="alert" *ngIf="showConfirmation">
+                  <p> Tem certeza de que deseja remover este contato?</p>
+
+                  <button class="btn btn-danger"[routerLink]="['remove', contact.id]" >Confirmar</button>
+                  <button class="btn btn-secondary" (click)="showConfirmation = false">Cancelar</button>
+              </div>
+              </td>
+            </tr>
 
           </tbody>
         </table>
       </div>
 
-      <div class="alert" *ngIf="showConfirmation">
-        <p> Tem certeza de que deseja remover este contato?</p>
 
-        <button class="btn btn-danger" (click)="confirmRemove()">Confirmar</button>
-        <button class="btn btn-secondary" (click)="showConfirmation">Cancelar</button>
-    </div>
 
 
   <div>
     <app-footer></app-footer>
   </div>
 </div>
-
 

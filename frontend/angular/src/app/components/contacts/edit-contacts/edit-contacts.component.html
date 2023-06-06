@@ -7,24 +7,24 @@
 
 <div class="test">
   <div class="mt-5 bg">
-    <form class="m-5" [routerLink]="'/contacts/new'">
+    <form class="m-5" [formGroup]="formEdit" (ngSubmit)="sendUserEdited()">
 
       <div class="col-md-4">
         <label for="inputName" class="form-label">Nome</label>
-        <input type="name" class="form-control" placeholder="Digite o nome do contato"id="inputName">
+        <input type="name" class="form-control" placeholder="Digite o nome do contato" formControlName="Nome" required >
       </div>
 
       <div class="col-md-4">
         <label for="inputEmail4" class="form-label">Email</label>
-        <input type="email" class="form-control" placeholder="Digite o e-mail do contato"id="inputEmail4">
+        <input type="email" class="form-control" placeholder="Digite o e-mail do contato" formControlName="Email" required >
       </div>
 
       <div class="col-md-4">
         <label for="inputTel" class="form-label">Celular</label>
-        <input type="tel" class="form-control" placeholder="Digite o celular do contato"id="inputTel">
+        <input type="tel" class="form-control" placeholder="Digite o celular do contato" formControlName="Telefone" required >
       </div>
 
-      <div class="d-grid gap-2 col-4 mt-3">
+      <div class="d-gr id gap-2 col-4 mt-3">
         <button type="submit" class="btn btn-primary btn-lg rounded-4">Alterar</button>
         <a class="btn btn-secondary btn-lg rounded-4" [routerLink]="'/contacts'">Voltar</a>
       </div>

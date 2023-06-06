@@ -1,8 +1,9 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Users } from '../../../../models/Users';
 import { ContactsService } from './../services/contacts.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserSharedService } from '../services/user-shared.service';
+
 
 @Component({
   selector: 'app-contacts',
@@ -13,31 +14,37 @@ import { UserSharedService } from '../services/user-shared.service';
 export class ContactsComponent implements OnInit{
 
 
-  users:Users[] = []
+  users: Users[] = []
 
-  constructor(private router: Router, private userSharedService : UserSharedService){}
+  constructor( private cdr: ChangeDetectorRef, private router: Router, private activatedRoute: ActivatedRoute, private userSharedService : UserSharedService, private contactsService: ContactsService){}
+
 
   ngOnInit(): void {
-
     this.getAll()
 
-  }
 
-  getAll(){
-    this.users = this.userSharedService.getUsers()
-    console.log(this.users)
-  }
+   }
+
+   getAll() {
+
+     this.contactsService.getUsers().subscribe((result) => {
+
+       this.users = result
+       console.log(this.users)
+       })
+
+   }
+
   showConfirmation = false;
 
-  confirmRemove(){
-    this.router.navigate(['/contacts/remove']);
+  // sendEditContact(){
+  //   this.router.navigate(['/contacts/edit/id'])
+  // }
+
+
+
   }
 
-
-
-
-
-  }
 
 
 
