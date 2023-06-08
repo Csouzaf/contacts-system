@@ -18,6 +18,9 @@ import { CreateContactsComponent } from './components/contacts/create-contacts/c
 import { UserSharedService } from './components/services/user-shared.service';
 import { ContactsService } from './components/services/contacts.service';
 
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,10 @@ import { ContactsService } from './components/services/contacts.service';
     CreateContactsComponent,
 
     EditContactsComponent,
-    RemoveContactsComponent
+    RemoveContactsComponent,
+
+    SignupComponent,
+      LoginComponent
 
   ],
 
