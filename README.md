@@ -2,16 +2,16 @@
 
 What you need to run the project about registration of people:
 
-1) Create connection to SQL Server Database
+1. Create connection to SQL Server Database
 
-   - Download the packages: EntityFrameworkCore 6.04, SqlServer 6.04 and Cors 2.2.0;
-   - Create a class in the model like UsersModel and classify the strings as empty ( = string.Empty; );
-   - Then create the context of this model as UsersDbContextModel;
-   - Configure Program.cs for VSCode to avoid Cors and configure with Sql Server using the code bellow:
+   >Download the packages: EntityFrameworkCore 6.04, SqlServer 6.04 and Cors 2.2.0;
+   >Create a class in the model like UsersModel and classify the strings as empty ( = string.Empty; );
+   >Then create the context of this model as UsersDbContextModel;
+   >Configure Program.cs for VSCode to avoid Cors and configure with Sql Server using the code bellow:
   
-   builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>(
-     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
+   >>builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>(
+     >>options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+>>);
 
 builder.Services.AddCors(options =>
 {

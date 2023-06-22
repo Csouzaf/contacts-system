@@ -10,6 +10,11 @@ namespace api.Services
     {
         private readonly UsersDbContextModel _usersDbContextModel;
 
+        public ContactsServices(UsersDbContextModel usersDbContextModel)
+        {
+            _usersDbContextModel = usersDbContextModel;
+        }
+        
         public async Task<List<UsersModel>> findAll()
         {
             return await _usersDbContextModel.usersModels.ToListAsync();
@@ -20,11 +25,6 @@ namespace api.Services
             return await _usersDbContextModel.usersModels.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public ContactsServices(UsersDbContextModel usersDbContextModel)
-        {
-            _usersDbContextModel = usersDbContextModel;
-        }
-        
         
         public async Task<UsersModel> createUser(UsersModel userModel)
         {

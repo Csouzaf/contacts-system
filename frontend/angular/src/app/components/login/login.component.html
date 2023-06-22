@@ -33,8 +33,13 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">
           <span class="decoration"> Check me out</span>
-
         </label>
+      </div>
+
+      <div>
+        <a [routerLink]="['/signup']">
+          <p >Doesn't have a Account? Create Here</p>
+        </a>
       </div>
 
       <button type="submit" class="btn btn-primary" [routerLink]="['/home']">Submit</button>

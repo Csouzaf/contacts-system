@@ -1,4 +1,5 @@
 using api.Models;
+using api.Models.auth;
 using api.Repository;
 using api.Services;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,10 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersLoginDbContextModel>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
