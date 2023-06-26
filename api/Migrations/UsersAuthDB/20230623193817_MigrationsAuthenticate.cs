@@ -2,14 +2,14 @@
 
 #nullable disable
 
-namespace api.Migrations.UsersLoginDbContextModelMigrations
+namespace api.Migrations.UsersAuthDB
 {
-    public partial class MigrationUsersLogin : Migration
+    public partial class MigrationsAuthenticate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "usersLogin",
+                name: "usersAuth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,12 +20,12 @@ namespace api.Migrations.UsersLoginDbContextModelMigrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_usersLogin", x => x.Id);
+                    table.PrimaryKey("PK_usersAuth", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_usersLogin_Email",
-                table: "usersLogin",
+                name: "IX_usersAuth_Email",
+                table: "usersAuth",
                 column: "Email",
                 unique: true);
         }
@@ -33,7 +33,7 @@ namespace api.Migrations.UsersLoginDbContextModelMigrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "usersLogin");
+                name: "usersAuth");
         }
     }
 }

@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace api.Models.auth
+namespace api.Models.auth.Model
 {
-    [Table("usersLogin")]
-    public class UsersLogin
+    [Table("usersAuth")]
+    public class UsersAuth
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -2,17 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using api.Models.auth;
+using api.Models.auth.Data;
 
 #nullable disable
 
-namespace api.Migrations.UsersLoginDbContextModelMigrations
+namespace api.Migrations.UsersAuthDB
 {
-    [DbContext(typeof(UsersLoginDbContextModel))]
-    partial class UsersLoginDbContextModelModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UsersAuthDBContext))]
+    [Migration("20230623193817_MigrationsAuthenticate")]
+    partial class MigrationsAuthenticate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace api.Migrations.UsersLoginDbContextModelMigrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("api.Models.auth.UsersLogin", b =>
+            modelBuilder.Entity("api.Models.auth.Model.UsersAuth", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,7 +48,7 @@ namespace api.Migrations.UsersLoginDbContextModelMigrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("usersLogin");
+                    b.ToTable("usersAuth");
                 });
 #pragma warning restore 612, 618
         }

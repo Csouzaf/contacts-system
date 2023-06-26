@@ -1,5 +1,6 @@
 using api.Models;
-using api.Models.auth;
+using api.Models.auth.Data;
+using api.Models.auth.Services;
 using api.Repository;
 using api.Services;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +15,15 @@ builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersDbContextModel>
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersLoginDbContextModel>(
+builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersAuthDBContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+// builder.Services.AddEntityFrameworkSqlServer().Add
+
 builder.Services.AddScoped<IContactsRepository, ContactsServices>();
 
+builder.Services.AddScoped<IUsersAuthRepository, UsersAuthService>();
 builder.Services.AddCors(options => 
 {
     options.AddDefaultPolicy(builder => 
