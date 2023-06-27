@@ -1,3 +1,4 @@
+using api.auth.jwt;
 using api.Models;
 using api.Models.auth.Data;
 using api.Models.auth.Services;
@@ -24,18 +25,22 @@ builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UsersAuthDBContext>(
 builder.Services.AddScoped<IContactsRepository, ContactsServices>();
 
 builder.Services.AddScoped<IUsersAuthRepository, UsersAuthService>();
-builder.Services.AddCors(options => 
-{
-    options.AddDefaultPolicy(builder => 
-    {
-        options.AddPolicy("AllowAnyOrigin", builder =>
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader());
-    });
 
-});
+builder.Services.AddScoped<JwtService>();
 
+// builder.Services.AddCors(options => 
+// {
+//     options.AddDefaultPolicy(builder => 
+//     {
+//         options.AddPolicy("AllowAnyOrigin", builder =>
+//             builder.AllowAnyOrigin()
+//                    .AllowAnyMethod()
+//                    .AllowAnyHeader());
+//     });
+
+// });
+
+builder.Services.AddCors();
 
 
 
@@ -53,9 +58,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
 app.UseRouting();
+
+app.UseCors(options => options.WithOrigins("http://localhost:7087","http://localhost:5075", "http://localhots:4200")
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.UseAuthorization();
 

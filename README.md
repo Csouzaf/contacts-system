@@ -16,8 +16,14 @@ What you need to run the project about registration of people:
 3. Run .NET 6:
 >Configuration SQL Server In appsetting.json: <br>
 
->>"ConnectionStrings":{"DefaultConnection":"Server=NAME YOUR ACCOUNT SQL SERVER;Database=NAME YOUT DATABASE;Trusted_Connection=True;Integrated Security=True"},
+>>"ConnectionStrings":{"DefaultConnection":"Server=NAME YOUR SQL SERVER ACCOUNT;Database=NAME YOUR DATABASE;Trusted_Connection=True;Integrated Security=True"},
   
 >Path until cd api and past: **dotnet run** <br><br>
   
-4. In the router contacts, your click in "Novo Contato" and create the contact with name, email and tel. After this you can to put or delete the user. 
+4. Create Account
+
+> Create your account and login to the page
+
+5. Use the system
+
+>In the router contacts, your click in "Novo Contato" and create the contact with name, email and tel. After this you can to put or delete the user. 

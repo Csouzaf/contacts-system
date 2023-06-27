@@ -1,3 +1,4 @@
+
 using api.Models.auth.Data;
 using api.Models.auth.Model;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +8,11 @@ namespace api.Models.auth.Services
     {
 
       private readonly UsersAuthDBContext _usersAuthDBContext;
+  
       public UsersAuthService(UsersAuthDBContext usersAuthDBContext) 
       {
         _usersAuthDBContext = usersAuthDBContext;
+       
       }
 
       public UsersAuth Create(UsersAuth usersAuth)
@@ -31,9 +34,11 @@ namespace api.Models.auth.Services
         
           return _usersAuthDBContext.usersAuth.FirstOrDefault(u => u.Email == email );
 
-     
+        }
 
-
+        public UsersAuth getById(int id)
+        {
+          return _usersAuthDBContext.usersAuth.FirstOrDefault(u => u.Id == id);
         }
 
 

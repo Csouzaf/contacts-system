@@ -2306,7 +2306,8 @@
       "Microsoft.EntityFrameworkCore >= 6.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.4",
-      "Microsoft.EntityFrameworkCore.Tools >= 6.0.4"
+      "Microsoft.EntityFrameworkCore.Tools >= 6.0.4",
+      "System.IdentityModel.Tokens.Jwt >= 6.8.0"
     ]
   },
   "packageFolders": {
@@ -2315,11 +2316,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
+      "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "d:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
+      "projectPath": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
       "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-      "outputPath": "d:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\obj\\",
+      "outputPath": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2369,6 +2370,10 @@
           "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
             "version": "[6.0.4, )"
+          },
+          "System.IdentityModel.Tokens.Jwt": {
+            "target": "Package",
+            "version": "[6.8.0, )"
           }
         },
         "imports": [

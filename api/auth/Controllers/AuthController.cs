@@ -1,4 +1,5 @@
 using api.auth.Dtos;
+using api.auth.jwt;
 using api.Models.auth.Data;
 using api.Models.auth.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace api.Models.auth.Controllersv
     public class AuthController : Controller
     {
         private readonly IUsersAuthRepository _usersAuthRepository;
-
-        public AuthController(IUsersAuthRepository usersAuthRepository)
+        private readonly JwtService _jwtService;
+        
+        public AuthController(IUsersAuthRepository usersAuthRepository, JwtService jwtService)
         {
             _usersAuthRepository = usersAuthRepository;
+            _jwtService = jwtService;
         }
 
         [HttpPost("signin")]
@@ -38,16 +41,48 @@ namespace api.Models.auth.Controllersv
             
             if( foundUserByEmail == null )
             {
-                return BadRequest(new {message = "User not found"});
+                return BadRequest(new {message = "Email or Password Invalid"});
             }
 
             if( !BCrypt.Net.BCrypt.Verify(loginDto.Password, foundUserByEmail.Password) ){
-                return BadRequest(new {message ="Invalid Credentials"});
+                return BadRequest(new {message ="Email or Password Invalid"});
             }
-            
-            return Ok(foundUserByEmail);
+
+            var jwt = _jwtService.generateJwt(foundUserByEmail.Id);
+
+            Response.Cookies.Append("jwt", jwt, new CookieOptions
+            {
+                HttpOnly = true
+            });
+
+            // return Ok(new {
+            //     jwt
+            // });
+
+            return Ok(new {
+                message= "Success"
+            });
         }
 
-        
+        [HttpGet("user")]
+        public IActionResult User()
+        {
+            try{
+
+                var jwt = Request.Cookies["jwt"];
+
+                var token = _jwtService.verifyJwt(jwt);
+
+                int userId = int.Parse(token.Issuer);
+
+                var user = _usersAuthRepository.getById(userId);
+
+                return Ok(user);
+            
+            }catch(Exception e){
+
+                return Unauthorized();
+            }
+        }  
     }
 }
