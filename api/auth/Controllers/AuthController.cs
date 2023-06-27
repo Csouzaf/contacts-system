@@ -19,7 +19,7 @@ namespace api.Models.auth.Controllersv
             _jwtService = jwtService;
         }
 
-        [HttpPost("signin")]
+        [HttpPost("signinup")]
         public IActionResult Register(RegisterDto registerDto)
         {
             var user = new UsersAuth
