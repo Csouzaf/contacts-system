@@ -21,6 +21,7 @@ import { ContactsService } from './components/services/contacts.service';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { LoginComponent } from './components/login/login.component';
     RemoveContactsComponent,
 
     SignupComponent,
-      LoginComponent
+      LoginComponent,
+   
 
   ],
 

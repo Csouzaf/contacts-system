@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit{
 
       console.log(result)
 
-      this.router.navigate(['/contacts'])
+      this.router.navigate(['/home'])
 
     })
 
