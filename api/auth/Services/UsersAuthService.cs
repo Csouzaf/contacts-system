@@ -18,6 +18,7 @@ namespace api.Models.auth.Services
       public UsersAuth Create(UsersAuth usersAuth)
       {
         try{
+          
          _usersAuthDBContext.usersAuth.Add(usersAuth);
          usersAuth.Id = _usersAuthDBContext.SaveChanges();
 

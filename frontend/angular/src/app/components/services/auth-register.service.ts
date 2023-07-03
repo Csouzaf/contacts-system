@@ -16,7 +16,8 @@ export class AuthRegisterService {
   HttpOptions =
   {
     headers: new HttpHeaders({
-      'Contenty-type': 'application/json'
+      'Contenty-type': 'application/json',
+
     })
   };
 

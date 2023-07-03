@@ -28,9 +28,15 @@ namespace api.Models.auth.Controllersv
                 Email = registerDto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password)
             };
-               var createdUser = _usersAuthRepository.Create(user);
 
-            return Created("success",createdUser);
+                var createdUser = _usersAuthRepository.Create(user);
+                      
+            return Created("success",createdUser); 
+           
+
+              
+               
+           
         }
 
         [HttpPost("login")]
