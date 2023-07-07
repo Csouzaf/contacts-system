@@ -181,4 +181,3 @@ D:\OneDrive\Programação\Csharp\contacts atualizado\api\obj\Debug\net6.0\refint
 D:\OneDrive\Programação\Csharp\contacts atualizado\api\obj\Debug\net6.0\api.pdb
 D:\OneDrive\Programação\Csharp\contacts atualizado\api\obj\Debug\net6.0\api.genruntimeconfig.cache
 D:\OneDrive\Programação\Csharp\contacts atualizado\api\obj\Debug\net6.0\ref\api.dll
-D:\OneDrive\Programação\Csharp\contacts-system\api\bin\Debug\net6.0\BCrypt.Net-Next.dll

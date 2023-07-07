@@ -12,7 +12,7 @@ const routes: Routes = [
 
   {path: 'contacts', component: ContactsComponent},
   {path: 'home', component: HomeComponent},
-  {path:'', redirectTo: '/login', pathMatch: 'full'},
+  {path:'', redirectTo: '/home', pathMatch: 'full'},
   {path:'contacts/new', component: CreateContactsComponent},
   {path:'contacts/edit/:id',component:EditContactsComponent},
   {path:'contacts/remove/:id', component:RemoveContactsComponent},
@@ -22,6 +22,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
+
   ],
   exports: [
     RouterModule,

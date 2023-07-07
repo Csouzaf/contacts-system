@@ -9,23 +9,23 @@
 
     <img src="../assets/images/background.jpg" alt="">
 
-    <form class="d-flex align-items-center justify-content-center" [formGroup]="register" (submit)="sendUserRegistered()">
+    <form class="d-flex align-items-center justify-content-center">
       <div class="position-absolute top-50 start-50 translate-middle">
 
         <div class="form-group">
           <label for="exampleNome" class="form-label fw-bold">
-            <span class="decoration">Name</span>
+            <span class="decoration">Username</span>
 
           </label>
-          <input type="text" class="form-control " id="exampleNome" aria-describedby="nameHelp" formControlName="name" placeholder="Digite o seu nome">
+          <input type="text" class="form-control " id="exampleNome" aria-describedby="nameHelp" placeholder="Digite o seu nome">
         </div>
 
         <div class="form-group " >
           <label for="exampleInputEmail1" class="form-label mt-3 fw-bold">
-            <span class="decoration"> Email</span>
+            <span class="decoration">  Email</span>
 
           </label>
-          <input type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="Digite seu e-mail">
+          <input type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite seu e-mail">
         </div>
 
         <div class="mb-3 mt-3">
@@ -34,14 +34,8 @@
             </span>
 
           </label>
-          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Digite sua senha" >
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha" >
         </div>
-<!-- 
-        <div class= "alert" *ngIf="verifyAuth">
-          <p>signup</p>
-
-        </div> -->
-
 
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -51,7 +45,7 @@
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" [routerLink]="['/home']">Submit</button>
       </div>
 
     </form>

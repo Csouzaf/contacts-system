@@ -9,8 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
-
-
 import { EditContactsComponent } from './components/contacts/edit-contacts/edit-contacts.component';
 import { RemoveContactsComponent } from './components/contacts/remove-contacts/remove-contacts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +19,6 @@ import { ContactsService } from './components/services/contacts.service';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,13 +28,10 @@ import { LoginComponent } from './components/login/login.component';
     HeaderComponent,
     HomeComponent,
     CreateContactsComponent,
-
     EditContactsComponent,
     RemoveContactsComponent,
-
     SignupComponent,
-      LoginComponent,
-   
+    LoginComponent
 
   ],
 

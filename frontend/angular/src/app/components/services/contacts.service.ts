@@ -1,20 +1,15 @@
-import { Signup } from './../../../../models/Signup';
 import { UserSharedService } from './user-shared.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { Users } from '../../../../models/Users';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
 
   private contactsURL = "https://localhost:7087/api/contacts";
-
   private users: Users[] = [];
-
-
     httpOptions =
     {
       headers: new HttpHeaders({ 'Contenty-type':'application/json' } )
@@ -52,6 +47,4 @@ export class ContactsService {
       const removeUsersApi = `${this.contactsURL}/${id}`;
       return this.http.delete<number>(removeUsersApi, this.httpOptions)
     }
-
-   
 }
