@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using api.Models.auth.Data;
+using api.auth.Data;
 
 #nullable disable
 
-namespace api.Migrations.UsersAuthDB
+namespace api.Migrations.AuthUserEmailDb
 {
-    [DbContext(typeof(UsersAuthDBContext))]
-    partial class UsersAuthDBContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AuthUserEmailDbContext))]
+    partial class AuthUserEmailDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -31,12 +31,15 @@ namespace api.Migrations.UsersAuthDB
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("UserAuthId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.HasIndex("UserAuthId")
                         .IsUnique();
@@ -54,7 +57,7 @@ namespace api.Migrations.UsersAuthDB
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -69,9 +72,6 @@ namespace api.Migrations.UsersAuthDB
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.ToTable("usersAuthenthicate");
                 });

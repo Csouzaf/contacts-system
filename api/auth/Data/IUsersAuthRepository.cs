@@ -6,8 +6,9 @@ namespace api.Models.auth.Data
     {
         UsersAuth Create(UsersAuth usersAuth);
         UsersAuth getByEmail(string Email);
-
         UsersAuth getById(int id);
+    //  '   List<UsersAuth> getUsers();'
+
     
     }
 }

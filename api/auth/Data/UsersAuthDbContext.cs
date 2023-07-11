@@ -1,3 +1,4 @@
+using api.auth.Model;
 using api.Models.auth.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace api.Models.auth.Data
         }
 
         public DbSet<UsersAuth> usersAuth { get; set; }
+        public DbSet<AuthUserEmail> authUserEmails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +21,12 @@ namespace api.Models.auth.Data
             modelBuilder.Entity<UsersAuth>(entity => {
                 entity.HasIndex(e => e.Email).IsUnique();
             });
+
+            modelBuilder.Entity<UsersAuth>()
+                .HasOne(e => e.authUserEmail)
+                .WithOne(e => e.UsersAuth)
+                .HasForeignKey<AuthUserEmail>(e => e.UserAuthId);
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -30,5 +38,6 @@ namespace api.Models.auth.Data
         {
             throw new NotImplementedException();
         }
+
     }
 }

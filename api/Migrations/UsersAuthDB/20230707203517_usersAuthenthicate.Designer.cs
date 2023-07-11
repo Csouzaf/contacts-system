@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api.Models.auth.Data;
 
@@ -10,9 +11,10 @@ using api.Models.auth.Data;
 namespace api.Migrations.UsersAuthDB
 {
     [DbContext(typeof(UsersAuthDBContext))]
-    partial class UsersAuthDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230707203517_usersAuthenthicate")]
+    partial class usersAuthenthicate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

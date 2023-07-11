@@ -1,10 +1,11 @@
-
+using System.Data.SqlTypes;
+using api.auth.Data;
 using api.Models.auth.Data;
 using api.Models.auth.Model;
 using Microsoft.EntityFrameworkCore;
 namespace api.Models.auth.Services
 {
-    public class UsersAuthService : IUsersAuthRepository
+    public class UsersAuthService : IUsersAuthRepository 
     {
 
       private readonly UsersAuthDBContext _usersAuthDBContext;
@@ -20,13 +21,16 @@ namespace api.Models.auth.Services
         try{
           
          _usersAuthDBContext.usersAuth.Add(usersAuth);
+
          usersAuth.Id = _usersAuthDBContext.SaveChanges();
 
          return usersAuth;
         }
         
-        catch(Exception e){
-          throw new Exception ("Não foi possível criar o usuário", e);
+        
+        catch(SqlNullValueException e){
+      
+          throw new SqlNullValueException ("Não foi possível criar o usuário", e);
         }
       }   
   

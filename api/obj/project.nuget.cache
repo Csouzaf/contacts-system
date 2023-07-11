@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PMxBOsRbKXlmSWXmRhUUym+1wjNvaXaX2jDHhnfr01TaRrumE1bSNBCZNiOL5vRwlXMZNKQefj/ULtFKClekOg==",
+  "dgSpecHash": "gvxDmDmuoIolcJ5cce8FVhG13htuQ+xOdJgEh+sQg+2TDwNZI10WLlIBWTKyfAEy0gNEHVOYsgN0F6ttZxPkxQ==",
   "success": true,
-  "projectFilePath": "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\api.csproj",
+  "projectFilePath": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\csouz\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

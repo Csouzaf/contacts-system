@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using api.auth.Model;
 
 namespace api.Models.auth.Model
 {
-    [Table("usersAuth")]
+    [Table("usersAuthenthicate")]
     public class UsersAuth
     {
         [Key]
@@ -12,6 +13,9 @@ namespace api.Models.auth.Model
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string telefone { get; set; }
+
+        public AuthUserEmail? authUserEmail { get; set; }
 
     }
 }

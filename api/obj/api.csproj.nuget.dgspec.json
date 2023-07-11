@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\api.csproj": {}
+    "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\api.csproj": {
+    "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\api.csproj",
+        "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\api.csproj",
+        "projectPath": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\api.csproj",
         "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Programação\\Csharp\\contacts atualizado\\api\\obj\\",
+        "outputPath": "D:\\OneDrive\\Programação\\Csharp\\contacts-system\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -57,6 +61,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[6.0.4, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.8.0, )"
             }
           },
           "imports": [
@@ -78,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.410\\RuntimeIdentifierGraph.json"
         }
       }
     }
