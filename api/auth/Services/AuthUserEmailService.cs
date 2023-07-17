@@ -24,16 +24,17 @@ namespace api.auth.Services
 
        
             _authUserEmailDbContext.authUserEmails.Add(authUserEmail);
-            authUserEmail.Id = _authUserEmailDbContext.SaveChanges();
-            // authUserEmail.UserAuthId = _authUserEmailDbContext.SaveChanges();
+            _authUserEmailDbContext.SaveChanges();
+     
             
 
             return authUserEmail; 
 
             }
             
-            catch(Exception e){
-                throw new Exception("Error", e);
+            catch(DbUpdateException e){
+                var exc = e.InnerException;
+                throw new Exception("Error", exc);
             }
         }
 

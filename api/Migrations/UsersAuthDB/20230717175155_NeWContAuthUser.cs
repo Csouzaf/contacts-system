@@ -4,7 +4,7 @@
 
 namespace api.Migrations.UsersAuthDB
 {
-    public partial class usersAuthenthicate : Migration
+    public partial class NeWContAuthUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

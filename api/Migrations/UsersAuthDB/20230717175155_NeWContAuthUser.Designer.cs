@@ -2,17 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using api.auth.Data;
+using api.Models.auth.Data;
 
 #nullable disable
 
-namespace api.Migrations.AuthUserEmailDb
+namespace api.Migrations.UsersAuthDB
 {
-    [DbContext(typeof(AuthUserEmailDbContext))]
-    partial class AuthUserEmailDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UsersAuthDBContext))]
+    [Migration("20230717175155_NeWContAuthUser")]
+    partial class NeWContAuthUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,15 +33,12 @@ namespace api.Migrations.AuthUserEmailDb
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserAuthId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.HasIndex("UserAuthId")
                         .IsUnique();
@@ -57,7 +56,7 @@ namespace api.Migrations.AuthUserEmailDb
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -72,6 +71,9 @@ namespace api.Migrations.AuthUserEmailDb
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("usersAuthenthicate");
                 });

@@ -23,8 +23,9 @@ namespace api.Models.auth.Controllersv
             _iAuthUserEmailRepository = iAuthUserEmailRepository;
         }
 
+
         [HttpPost("signinup")]
-        public IActionResult Register(RegisterDto registerDto )
+        public IActionResult Register(RegisterDto registerDto)
         {
             var user = new UsersAuth
             {
@@ -33,48 +34,61 @@ namespace api.Models.auth.Controllersv
                 telefone = registerDto.telefone,
                 Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password)
             };
-         
+            
             var createdUser = _usersAuthRepository.Create(user);
+               
+          
+
+            if(createdUser != null){
             
-            // var verifyUserAlreadyExist = _iAuthUserEmailRepository.findById()
-
-            // if(verifyUserAlreadyExist != null){
-            //     verifyUserAlreadyExist.Email =user.Email;
-            //     _iAuthUserEmailRepository.Update(verifyUserAlreadyExist);
-            // }
+            var findUserById = _usersAuthRepository.getById(createdUser.Id);
             
-
-            // if(user != null)
-            // {
-
-                // int  UserAuthId = user.Id;
-                var authUserEmail = new AuthUserEmail
+            var authUserEmail = new AuthUserEmail
                 {
                   
-                   Email = user.Email,
-                   UserAuthId = user.Id
-                   
-                //    if(authUserEmail.UserAuthId == user.Id){
-                //      authUserEmail.Email = user.Email;
-                //         authUserEmail.UserAuthId = user.Id;
-                //    };
-                    // UsersAuth = user
+                   Email = createdUser.Email,
+                   UserAuthId = createdUser.Id
  
                 };
-                 
+
+              
                var createdAuthUserEmail = _iAuthUserEmailRepository.Create(authUserEmail);
+
+                return Created("succes", new {
+                    createdUser, createdAuthUserEmail});   
+                        
+            }
+            else
+                {
+                    return BadRequest(new { message = "Failed to create user." });
+                }
+            // if(findUserById == null){
+            //     return BadRequest(new{message = "id não encontrado"});
             // }
+            
+            // if(findUserById != null){
+            //     return Created("success email", createdAuthUserEmail);
+            // }
+
+            //  return Ok(new {
                 
-            return Created("success", new{
-                createdUser,
-                createdAuthUserEmail
-                    
-                    
-            });
+            //     message= "Success"
+            // });
+            
+         
+            
+         
+
+          
+
+         
+
+
  
 
         }
-
+                 
+          
         [HttpPost("login")]
         public IActionResult Login(LoginDto loginDto)
         {

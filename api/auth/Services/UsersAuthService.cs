@@ -22,7 +22,8 @@ namespace api.Models.auth.Services
           
          _usersAuthDBContext.usersAuth.Add(usersAuth);
 
-         usersAuth.Id = _usersAuthDBContext.SaveChanges();
+        //  usersAuth.Id = 
+         _usersAuthDBContext.SaveChanges();
 
          return usersAuth;
         }

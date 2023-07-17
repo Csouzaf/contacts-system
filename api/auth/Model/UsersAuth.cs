@@ -15,6 +15,7 @@ namespace api.Models.auth.Model
         public string Password { get; set; }
         public string telefone { get; set; }
 
+        [Required]
         public AuthUserEmail? authUserEmail { get; set; }
 
     }
