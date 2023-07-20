@@ -69,9 +69,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseCors(options => options.WithOrigins("http://localhost:7087","http://localhost:5075", "http://localhots:4200")
-    .AllowAnyOrigin()
+    
     .AllowAnyMethod()
-    .AllowAnyHeader());
+    .AllowAnyHeader()
+    .AllowCredentials());
 
 app.UseAuthorization();
 

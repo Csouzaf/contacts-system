@@ -24,7 +24,7 @@ namespace api.Models.auth.Controllersv
         }
 
 
-        [HttpPost("signinup")]
+        [HttpPost("signup")]
         public IActionResult Register(RegisterDto registerDto)
         {
             var user = new UsersAuth
@@ -36,8 +36,6 @@ namespace api.Models.auth.Controllersv
             };
             
             var createdUser = _usersAuthRepository.Create(user);
-               
-          
 
             if(createdUser != null){
             
@@ -62,29 +60,6 @@ namespace api.Models.auth.Controllersv
                 {
                     return BadRequest(new { message = "Failed to create user." });
                 }
-            // if(findUserById == null){
-            //     return BadRequest(new{message = "id não encontrado"});
-            // }
-            
-            // if(findUserById != null){
-            //     return Created("success email", createdAuthUserEmail);
-            // }
-
-            //  return Ok(new {
-                
-            //     message= "Success"
-            // });
-            
-         
-            
-         
-
-          
-
-         
-
-
- 
 
         }
                  
@@ -111,26 +86,12 @@ namespace api.Models.auth.Controllersv
                 HttpOnly = true
             });
 
-            // return Ok(new {
-            //     jwt
-            // });
+          
 
-            return Ok(new {
-                
-                message= "Success"
-            });
+            return Ok();
         }
 
-        // [HttpGet("find")]
-        // public IActionResult findByEmail(RegisterDto registerDto)
-        // {
-        //     UsersAuth users = new UsersAuth();
-
-        //     AuthUserEmail authUserEmail = _iAuthUserEmailRepository.findUserByEmail(registerDto.Email);
-        //     return Ok(authUserEmail);
-            
-            
-        // }
+  
 
         [HttpGet("user")]
         public IActionResult User()

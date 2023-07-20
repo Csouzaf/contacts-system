@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, RequiredValidator, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthLoginService } from '../services/auth-login.service';
+import { Login } from 'models/Login';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { AuthLoginService } from '../services/auth-login.service';
 export class LoginComponent implements OnInit{
 
   formLogin!: FormGroup;
-  signup!: Signup[]
+  login!: Login[]
 
   constructor(
     private router : Router,
@@ -32,21 +33,25 @@ export class LoginComponent implements OnInit{
 
   }
 
-  sendLogin(){
+  sendLogin():void{
 
-    if(!this.authLoginService.login){
-      alert("Registrar")
-    }
 
-    this.authLoginService.sendPostLogin(this.formLogin.value).subscribe((result)=>{
-      console.log(result)
-      
 
-      this.router.navigate(['/home'])
-    })
+      this.authLoginService.sendPostLogin(this.formLogin.value).subscribe((result)=>{
+        console.log(result)
+
+
+        // this.router.navigate(['/home'])
+
+
+      })
+
+
+
+
   }
 
 
 
-
 }
+

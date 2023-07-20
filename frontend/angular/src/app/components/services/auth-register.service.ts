@@ -11,7 +11,7 @@ export class AuthRegisterService {
 
   signup: Signup[] = [];
 
-  private authSignupURL = "https://localhost:7087/api/auth/signinup";
+  private authSignupURL = "https://localhost:7087/api/auth/signup";
 
   HttpOptions =
   {
@@ -27,6 +27,7 @@ export class AuthRegisterService {
   postRegister(signup: Signup): Observable<Signup>
   {
     return this.http.post<Signup>(this.authSignupURL, signup, this.HttpOptions)
+
   }
 
 

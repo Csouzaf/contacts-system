@@ -5,7 +5,7 @@ What you need to run the project about registration of people:
 1. Packages:
 >Install npm 16.6.6. Past in terminal: **npm install**<br>
 
->To Install Angular CLI 15.2 locally:  Path cd frontend and after cd angular and Past **npm install @angular/cli@15.2** and **npm install @angular/core@15.2** <br>
+>To Install Angular CLI 15.2 locally: Path cd frontend and after cd angular and Past **npm install @angular/cli@15.2** and **npm install @angular/core@15.2** <br>
 
 >To Install Angular CLI 15.2 globally. Past in terminal: **npm install -g @angular/cli@15.2**<br><br>
 
@@ -25,6 +25,10 @@ What you need to run the project about registration of people:
 
 > Create your account and login to the page
 
-5. Use the system
+5. Run the system
 
+> With Angular and .NET running<br>
+
+> Create your account in router signup <br>
+> Login
 >In the router contacts, your click in "Novo Contato" and create the contact with name, email and tel. After this you can to put or delete the user. 

@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit{
 
       name: '',
       email: '',
+      telefone: '',
       password:''
 
     })
@@ -32,17 +33,17 @@ export class SignupComponent implements OnInit{
   }
 
   verifyEmail(){
-    
+
   }
   sendUserRegistered():void{
 
     // console.log(this.register.getRawValue())
-    this.authRegisterService.postRegister(this.register.value).subscribe((result) => {
+     this.authRegisterService.postRegister(this.register.value).subscribe((result) => {
 
 
       console.log(result)
 
-      this.router.navigate(['/home'])
+      this.router.navigate(['/login'])
 
     })
 

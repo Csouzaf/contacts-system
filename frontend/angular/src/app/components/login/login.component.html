@@ -9,7 +9,8 @@
 
   <img src="../assets/images/startup1.jpg" alt="">
 
-  <form class="d-flex align-items-center justify-content-center" (Submit)="sendLogin()" [formGroup]="formLogin">
+
+  <form class="d-flex align-items-center justify-content-center" [formGroup]="formLogin" (submit)="sendLogin()">
     <div class="position-absolute top-50 start-50 translate-middle">
 
       <div class="form-group " >
@@ -33,19 +34,15 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">
           <span class="decoration"> Check me out</span>
-        </label>
-      </div>
 
-      <div>
-        <a [routerLink]="['/signup']">
-          <p >Doesn't have a Account? Create Here</p>
-        </a>
+        </label>
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 
   </form>
+
 
 
 </div>
