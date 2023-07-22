@@ -68,27 +68,28 @@ namespace api.Models.auth.Controllersv
         public IActionResult Login(LoginDto loginDto)
         {
             
-            var findUserByEmail = _usersAuthRepository.getByEmail(loginDto.Email);
+            var findUser = _usersAuthRepository.getByEmail(loginDto.Email);
             
-            if( findUserByEmail == null )
+            if( findUser == null )
             {
                 return BadRequest(new {message = "Email or Password Invalid"});
             }
 
-            if( !BCrypt.Net.BCrypt.Verify(loginDto.Password, findUserByEmail.Password) ){
+            if( !BCrypt.Net.BCrypt.Verify(loginDto.Password, findUser.Password) ){
                 return BadRequest(new {message ="Email or Password Invalid"});
             }
 
-            var jwt = _jwtService.generateJwt(findUserByEmail.Id);
+            var jwt = _jwtService.generateJwt(findUser.Id);
 
             Response.Cookies.Append("jwt", jwt, new CookieOptions
             {
-                HttpOnly = true
+                HttpOnly = true,
+                Secure = true
             });
 
           
 
-            return Ok();
+            return Ok(new {message = "succes"});
         }
 
   
@@ -112,6 +113,18 @@ namespace api.Models.auth.Controllersv
 
                 return Unauthorized();
             }
+        }
+
+        [HttpGet("logout")]
+        public IActionResult logoutUser()
+        {
+            Response.Cookies.Delete("jwt", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true
+            });
+
+            return Ok(new {message = "User logout"});
         }  
     }
 }

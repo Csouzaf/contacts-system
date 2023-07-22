@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, RequiredValidator, EmailValidator } from '@angu
 import { Router } from '@angular/router';
 import { AuthLoginService } from '../services/auth-login.service';
 import { Login } from 'models/Login';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,13 +16,13 @@ import { Login } from 'models/Login';
 export class LoginComponent implements OnInit{
 
   formLogin!: FormGroup;
-  login!: Login[]
+
 
   constructor(
     private router : Router,
     private formBuilder : FormBuilder,
     private authLoginService : AuthLoginService,
-    private authRegisterService : AuthRegisterService
+    private http : HttpClient
 
   ){}
 
@@ -35,22 +36,14 @@ export class LoginComponent implements OnInit{
 
   sendLogin():void{
 
-
-
       this.authLoginService.sendPostLogin(this.formLogin.value).subscribe((result)=>{
         console.log(result)
 
 
         // this.router.navigate(['/home'])
 
-
       })
-
-
-
-
   }
-
 
 
 }

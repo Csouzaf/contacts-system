@@ -9,7 +9,7 @@ using api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -48,7 +48,7 @@ builder.Services.AddScoped<JwtService>();
 
 // });
 
-builder.Services.AddCors();
+
 
 
 
@@ -68,10 +68,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseCors(options => options.WithOrigins("http://localhost:7087","http://localhost:5075", "http://localhots:4200")
-    
-    .AllowAnyMethod()
+app.UseCors(options => options.WithOrigins(new []{"http://localhost:7087","http://localhost:5075", "http://localhost:4200"})
     .AllowAnyHeader()
+    .AllowAnyMethod()
     .AllowCredentials());
 
 app.UseAuthorization();
