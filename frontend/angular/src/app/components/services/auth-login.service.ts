@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Login } from 'models/Login';
 import { UsersAuth } from 'models/UsersAuth';
 import { Users } from 'models/Users';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +30,22 @@ export class AuthLoginService {
 
   }
 
-  sendPostLogin(login: Login) : Observable<Login>
-  {
-    return this.http.post<Login>(this.authLoginURL,login, this.HttpOptions)
-  }
+
+  sendPostLogin(login: Login): Observable<Login> {
+    
+   return this.http.post<Login>(this.authLoginURL, login, this.HttpOptions)
+      .pipe(
+        catchError((error) => {
+
+          if(error.status === 400 || error.status === 404 || error.status === 402) {
+            alert("Usuário não encontrado");
+          }
+
+          return of();
+        })
+      );
+
+  };
 
   getUser(): Observable<UsersAuth>
   {

@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit{
     private router : Router,
     private formBuilder : FormBuilder,
     private authLoginService : AuthLoginService,
-    private http : HttpClient
 
   ){}
 
@@ -34,15 +33,15 @@ export class LoginComponent implements OnInit{
 
   }
 
-  sendLogin():void{
+  sendLogin(){
 
       this.authLoginService.sendPostLogin(this.formLogin.value).subscribe((result)=>{
         console.log(result)
 
-
-        // this.router.navigate(['/home'])
+        this.router.navigate(['/home'])
 
       })
+
   }
 
 
