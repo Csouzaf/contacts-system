@@ -1,5 +1,5 @@
 import { Signup } from './../../../../models/Signup';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -26,7 +26,17 @@ export class AuthRegisterService {
 
   postRegister(signup: Signup): Observable<Signup>
   {
-    return this.http.post<Signup>(this.authSignupURL, signup, this.HttpOptions)
+
+    return this.http.post<Signup>(this.authSignupURL, signup, this.HttpOptions).pipe(
+
+      catchError((error) => {
+
+        if(error.status === 500){
+          alert("Email já criado, tente outro")
+        }
+        return of();
+      })
+    );
 
   }
 

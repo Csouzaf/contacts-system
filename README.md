@@ -30,7 +30,7 @@ What you need to run the project about registration of people:
 
 >>Path until cd api and create the migration for login and signup pasts: **dotnet ef migration add AuthenticationUsers --context UsersAuthDbContext** <br>
 
->>After this you need update the database with:**dotnet ef database --context UsersAuthDbContext** <br><br>
+>>After this you need update the database with: **dotnet ef database --context UsersAuthDbContext** <br><br>
 
 4. Create Account
 

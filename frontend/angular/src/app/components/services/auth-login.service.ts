@@ -11,9 +11,6 @@ import { Observable, catchError, of } from 'rxjs';
 })
 export class AuthLoginService {
 
-  login: Login[] =[];
-
-
   private authLoginURL = "https://localhost:7087/api/auth/login";
   private getUserLogin = "https://localhost:7087/api/auth/user";
 
@@ -32,7 +29,7 @@ export class AuthLoginService {
 
 
   sendPostLogin(login: Login): Observable<Login> {
-    
+
    return this.http.post<Login>(this.authLoginURL, login, this.HttpOptions)
       .pipe(
         catchError((error) => {
