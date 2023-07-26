@@ -39,17 +39,17 @@ namespace api.Models.auth.Controllersv
 
             if(createdUser != null){
             
-            var findUserById = _usersAuthRepository.getById(createdUser.Id);
-            
-            var authUserEmail = new AuthUserEmail
-                {
-                  
-                   Email = createdUser.Email,
-                   UserAuthId = createdUser.Id
- 
-                };
+                var findUserById = _usersAuthRepository.getById(createdUser.Id);
+                
+                var authUserEmail = new AuthUserEmail
+                    {
+                    
+                    Email = createdUser.Email,
+                    UserAuthId = createdUser.Id
+    
+                    };
 
-              
+                
                var createdAuthUserEmail = _iAuthUserEmailRepository.Create(authUserEmail);
 
                 return Created("succes", new {
