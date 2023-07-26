@@ -20,15 +20,9 @@ What you need to run the project about registration of people:
 
 >**IMPORTANT: If you dowload this project with migration already create, delete it and create a new migration with step by step bellow:** <br>
 
->Create Contacts Migration: <br>
+>Create Relantionship between Authentication and Contacts Migrations: <br>
 
->>Path until cd api and create the migration for contacts past: **dotnet ef migrations add Contacts --context UsersDbContextModel** <br>
-
->>After this you need update the database with:**dotnet ef database update --context UsersDbContextModel** <br><br>
-
->Create Authentication Migration: <br>
-
->>Path until cd api and create the migration for login and signup pasts: **dotnet ef migrations add AuthenticationUsers --context UsersAuthDbContext** <br>
+>>Path until cd api and create the migration for login, signup and contacts pasts: **dotnet ef migrations add AuthenticationUsers --context UsersAuthDbContext** <br>
 
 >>After this you need update the database with: **dotnet ef database update --context UsersAuthDbContext** <br><br>
 

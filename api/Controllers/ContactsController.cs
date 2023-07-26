@@ -37,7 +37,7 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> createContacts([FromBody] UsersModel usersModel)
         {
-        
+            //Criar o contato na tabela usersModel e ser relacionado ao id do userAuth
             var createdUsers = await _icontactsRepository.createUser(usersModel);
             return Ok(createdUsers);
         }

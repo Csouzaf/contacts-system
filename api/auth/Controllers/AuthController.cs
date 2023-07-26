@@ -56,10 +56,11 @@ namespace api.Models.auth.Controllersv
                     createdUser, createdAuthUserEmail});   
                         
             }
+            
             else
-                {
-                    return BadRequest(new { message = "Failed to create user." });
-                }
+            {
+                return BadRequest(new { message = "Failed to create user." });
+            }
 
         }
                  

@@ -26,6 +26,11 @@ namespace api.Models.auth.Data
                 .HasOne(e => e.authUserEmail)
                 .WithOne(e => e.UsersAuth)
                 .HasForeignKey<AuthUserEmail>(e => e.UserAuthId);
+            
+            modelBuilder.Entity<UsersAuth>()
+                .HasMany(n => n.usersModel)
+                .WithOne(n => n.usersAuth)
+                .HasForeignKey(n => n.userAuthId);
 
         }
 
