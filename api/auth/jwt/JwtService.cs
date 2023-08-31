@@ -1,5 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
+using api.Models.auth.Model;
 using Microsoft.IdentityModel.Tokens;
 
 namespace api.auth.jwt
@@ -12,15 +14,28 @@ namespace api.auth.jwt
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secureKey));
 
             var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
-
+            
+         
+            
+                    var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, id.ToString()), //NOTE - User.Identify.Name
+                    // new Claim(ClaimTypes.Name, usersAuth.Name)
+                    //new Claim(ClaimTypes.Role, usersAuth.Role) - User.IsInRole
+                  
+                };
+           
+             
             var header = new JwtHeader(credentials);
 
-            var payload = new JwtPayload(id.ToString(), null, null, null, DateTime.Today.AddDays(1));
-
+            var payload = new JwtPayload(id.ToString(), null, claims, null , DateTime.UtcNow.AddHours(4));
+          
             var securityToken = new JwtSecurityToken(header, payload);
 
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
+
+
 
         public JwtSecurityToken verifyJwt(string jwt)
         {

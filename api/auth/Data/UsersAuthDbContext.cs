@@ -17,20 +17,21 @@ namespace api.Models.auth.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+           //NOTE - UsersAuth provides unique email
             modelBuilder.Entity<UsersAuth>(entity => {
                 entity.HasIndex(e => e.Email).IsUnique();
             });
-
+            
+            //NOTE - How UsersAuth is the main relantionship (father), it's came first instead authUserEmail
             modelBuilder.Entity<UsersAuth>()
                 .HasOne(e => e.authUserEmail)
                 .WithOne(e => e.UsersAuth)
                 .HasForeignKey<AuthUserEmail>(e => e.UserAuthId);
             
             modelBuilder.Entity<UsersAuth>()
-                .HasMany(n => n.usersModel)
+                .HasMany(n => n.contactsModel)
                 .WithOne(n => n.usersAuth)
-                .HasForeignKey(n => n.userAuthId);
+                .HasForeignKey(n => n.usersAuthId);
 
         }
 

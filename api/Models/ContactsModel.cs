@@ -5,7 +5,7 @@ using api.Models.auth.Model;
 namespace api.Models
 {
     [Table("contacts")]
-    public class UsersModel
+    public class ContactsModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,7 +15,7 @@ namespace api.Models
         public string Telefone { get; set; } = string.Empty;
 
         [ForeignKey("UsersAuth")]
-        public int userAuthId { get; set; }
+        public int usersAuthId { get; set; }
 
         public UsersAuth usersAuth { get; set; }
 

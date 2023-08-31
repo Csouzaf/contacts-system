@@ -7,7 +7,8 @@ What you need to run the project about registration of people:
 
 >To Install Angular CLI 15.2 locally: Path cd frontend and after cd angular and Past **npm install @angular/cli@15.2** and **npm install @angular/core@15.2** <br>
 
->To Install Angular CLI 15.2 globally. Past in terminal: **npm install -g @angular/cli@15.2**<br><br>
+>To Install Angular CLI 15.2 globally. Past in terminal: **npm install -g @angular/cli@15.2.0**<br><br>
+
 
 2. **Run the Angular**:
 >Path until cd frontend and cd angular<br>

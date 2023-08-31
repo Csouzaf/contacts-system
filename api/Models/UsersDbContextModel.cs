@@ -9,7 +9,7 @@ namespace api.Models
 
         }
 
-        public DbSet<UsersModel> usersModels { get; set; }
+        public DbSet<ContactsModel> contactsModel { get; set; }
 
           protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,26 +1,35 @@
+using System.Security.Claims;
 using api.auth.Data;
 using api.auth.Dtos;
 using api.auth.jwt;
 using api.auth.Model;
 using api.Models.auth.Data;
 using api.Models.auth.Model;
+using api.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Models.auth.Controllersv 
 {   
     [ApiController]
     [Route("api/[Controller]")]
+    
     public class AuthController : Controller
     {
         private readonly IUsersAuthRepository _usersAuthRepository;
         private readonly JwtService _jwtService;
         private readonly IAuthUserEmailRepository _iAuthUserEmailRepository;
+        private readonly IContactsRepository _iContactsRepository;
         
-        public AuthController(IUsersAuthRepository usersAuthRepository, JwtService jwtService, IAuthUserEmailRepository iAuthUserEmailRepository )
+        public AuthController(IUsersAuthRepository usersAuthRepository, JwtService jwtService, 
+        IAuthUserEmailRepository iAuthUserEmailRepository,  IContactsRepository iContactsRepository)
         {
             _usersAuthRepository = usersAuthRepository;
             _jwtService = jwtService;
             _iAuthUserEmailRepository = iAuthUserEmailRepository;
+            _iContactsRepository = iContactsRepository;
+
         }
 
 
@@ -38,22 +47,21 @@ namespace api.Models.auth.Controllersv
             var createdUser = _usersAuthRepository.Create(user);
 
             if(createdUser != null){
-            
-                var findUserById = _usersAuthRepository.getById(createdUser.Id);
                 
+               
                 var authUserEmail = new AuthUserEmail
-                    {
+                {
                     
                     Email = createdUser.Email,
                     UserAuthId = createdUser.Id
     
-                    };
+                };
 
-                
+
                var createdAuthUserEmail = _iAuthUserEmailRepository.Create(authUserEmail);
 
                 return Created("succes", new {
-                    createdUser, createdAuthUserEmail});   
+                    createdUser, createdAuthUserEmail });   
                         
             }
             
@@ -88,9 +96,7 @@ namespace api.Models.auth.Controllersv
                 Secure = true
             });
 
-          
-
-            return Ok(new {message = "succes"});
+            return Ok(new {message = "User logged"});
         }
 
   
@@ -105,14 +111,14 @@ namespace api.Models.auth.Controllersv
                 var token = _jwtService.verifyJwt(jwt);
 
                 int userId = int.Parse(token.Issuer);
-
+                
                 var user = _usersAuthRepository.getById(userId);
-
-                return Ok(user);
+                
+                return Ok( new{user, user.Name});
             
             }catch(Exception e){
 
-                return Unauthorized();
+                return Unauthorized(e);
             }
         }
 

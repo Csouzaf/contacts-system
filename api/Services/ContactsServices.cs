@@ -1,6 +1,9 @@
 using api.Errors;
 using api.Models;
+using api.Models.auth.Data;
+using api.Models.auth.Model;
 using api.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Services
@@ -9,29 +12,30 @@ namespace api.Services
     public class ContactsServices : IContactsRepository
     {
         private readonly UsersDbContextModel _usersDbContextModel;
-
+       
+        
         public ContactsServices(UsersDbContextModel usersDbContextModel)
         {
             _usersDbContextModel = usersDbContextModel;
         }
         
-        public async Task<List<UsersModel>> findAll()
+
+        public async Task<List<ContactsModel>> findAll()
         {
-            return await _usersDbContextModel.usersModels.ToListAsync();
+            return await _usersDbContextModel.contactsModel.ToListAsync();
         }
 
-        public async Task<UsersModel> findById(int id)
+        public async Task<ContactsModel> findById(int id)
         {
-            return await _usersDbContextModel.usersModels.FirstOrDefaultAsync(x => x.Id == id);
+            return await _usersDbContextModel.contactsModel.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        
-        public async Task<UsersModel> createUser(UsersModel userModel)
+        public async Task<ContactsModel> createUser(ContactsModel contactsModel)
         {
             try{
-                 await _usersDbContextModel.usersModels.AddAsync(userModel);
+                 await _usersDbContextModel.contactsModel.AddAsync(contactsModel);
                  await _usersDbContextModel.SaveChangesAsync();
-                 return userModel;
+                 return contactsModel;
 
             }catch(Exception e){
                 throw new Exception("Não foi possível criar o usuário", e);
@@ -40,20 +44,20 @@ namespace api.Services
           
         }
 
-        public async Task<UsersModel> updateUser(UsersModel usersModel, int id)
+        public async Task<ContactsModel> updateUser(ContactsModel contactsModel, int id)
         {
          
-           UsersModel findUsersById = await findById(id);
+           ContactsModel findUsersById = await findById(id);
 
            if(findById == null){
             throw new Exception("Não foi possível encontrar o usuário");
            }
 
-           findUsersById.Nome = usersModel.Nome;
-           findUsersById.Email = usersModel.Email;
-           findUsersById.Telefone = usersModel.Telefone;
+           findUsersById.Nome = contactsModel.Nome;
+           findUsersById.Email = contactsModel.Email;
+           findUsersById.Telefone = contactsModel.Telefone;
            
-           _usersDbContextModel.usersModels.Update(findUsersById);
+           _usersDbContextModel.contactsModel.Update(findUsersById);
            
            await _usersDbContextModel.SaveChangesAsync();
 
@@ -62,14 +66,14 @@ namespace api.Services
 
         public async Task<bool> deleteUser(int id)
         {
-            UsersModel findUsersById = await findById(id);
+            ContactsModel findUsersById = await findById(id);
 
             if(findUsersById == null)
             {
                 throw new Exception("Não foi possível encontrar o usuário");
             }
 
-            _usersDbContextModel.usersModels.Remove(findUsersById);
+            _usersDbContextModel.contactsModel.Remove(findUsersById);
             
             await _usersDbContextModel.SaveChangesAsync();
 

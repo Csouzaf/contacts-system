@@ -36,6 +36,10 @@ builder.Services.AddScoped<IAuthUserEmailRepository, AuthUserEmailService>();
 
 builder.Services.AddScoped<JwtService>();
 
+// builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor()>;
+
+builder.Services.AddHttpContextAccessor();
+
 // builder.Services.AddCors(options => 
 // {
 //     options.AddDefaultPolicy(builder => 
@@ -47,9 +51,6 @@ builder.Services.AddScoped<JwtService>();
 //     });
 
 // });
-
-
-
 
 
 var app = builder.Build();
@@ -77,6 +78,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
+    //TODO - Change router to login
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

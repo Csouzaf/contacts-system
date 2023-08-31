@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using System.Data.SqlTypes;
 using api.auth.Data;
 using api.Models.auth.Data;
@@ -35,11 +36,17 @@ namespace api.Models.auth.Services
         }
       }   
   
+   //NOTE - Find user by email for it will be authenticated and to do crud
         public UsersAuth getByEmail(string email)
         {
         
           return _usersAuthDBContext.usersAuth.FirstOrDefault(u => u.Email == email );
 
+        }
+
+        public UsersAuth getName(string name)
+        {
+          return _usersAuthDBContext.usersAuth.FirstOrDefault(n => n.Name == name);
         }
 
         public UsersAuth getById(int id)

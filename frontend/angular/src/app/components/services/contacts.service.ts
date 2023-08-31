@@ -12,9 +12,6 @@ export class ContactsService {
 
   private contactsURL = "https://localhost:7087/api/contacts";
 
-  private users: Users[] = [];
-
-
     httpOptions =
     {
       headers: new HttpHeaders({ 'Contenty-type':'application/json' } )
@@ -53,5 +50,5 @@ export class ContactsService {
       return this.http.delete<number>(removeUsersApi, this.httpOptions)
     }
 
-   
+
 }
