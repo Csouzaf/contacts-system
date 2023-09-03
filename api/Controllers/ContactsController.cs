@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using api.Models.auth.Data;
 
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
@@ -46,21 +47,31 @@ namespace api.Controllers
         }
 
     //TODO - Get userAuthenticated, because is returned ok but userAuthenticated = null
+        [Authorize]
         [HttpGet("auth")]
-        public IActionResult UserAuthenticate()
+        public IActionResult UserAuthenticated()
         {
-            var userAuthenticated = _ihttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
 
-            // if(userAuthenticated != null){
+            //FIXME - _ihttpContextAccessor.HttpContext is null here, resolve
 
-               
-
-                return Ok(new {userAuthenticated, message = "Working"});
+            try{
                 
-          
+                //FIXME - Get id user authenticated with NameIdentifier
+                var userAuthenticated = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                
+                if(userAuthenticated != null){
+     
+                    return Ok(new {userAuthenticated, message = "User Retrieve in Contacts Router"});
+                    
+                }
 
+            }
+            catch(Exception e){
+                 return BadRequest(e.Message);
+            }
 
-           
+           return null;
+    
         }
 
        [HttpPut("{id}")]

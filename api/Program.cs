@@ -6,9 +6,15 @@ using api.Models.auth.Data;
 using api.Models.auth.Services;
 using api.Repository;
 using api.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+ConfigurationManager configuration = builder.Configuration;
+
 builder.Services.AddCors();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -36,9 +42,9 @@ builder.Services.AddScoped<IAuthUserEmailRepository, AuthUserEmailService>();
 
 builder.Services.AddScoped<JwtService>();
 
-// builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor()>;
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-builder.Services.AddHttpContextAccessor();
+// builder.Services.AddHttpContextAccessor();
 
 // builder.Services.AddCors(options => 
 // {
@@ -52,6 +58,35 @@ builder.Services.AddHttpContextAccessor();
 
 // });
 
+// For Identity
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<UsersAuthDBContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(options =>
+    {
+        
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+    })
+    .AddJwtBearer(options =>
+    
+    {
+       
+        options.SaveToken = true;
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            // ValidIssuer = "http://localhost:7087", // Replace with your issuer
+            ValidateAudience = false,
+            // ValidAudience = "http://localhost:7087", // Replace with your audience
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"])), // Replace with your secret key
+            
+        };
+    });
 
 var app = builder.Build();
 
@@ -73,7 +108,8 @@ app.UseCors(options => options.WithOrigins(new []{"http://localhost:7087","http:
     .AllowAnyHeader()
     .AllowAnyMethod()
     .AllowCredentials());
-
+    
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -72,19 +72,20 @@ namespace api.Models.auth.Controllersv
 
         }
                  
-          
         [HttpPost("login")]
         public IActionResult Login(LoginDto loginDto)
         {
-            
+            //NOTE - Find the user e-mail already registered in the repository pass to Email in loginDto
             var findUser = _usersAuthRepository.getByEmail(loginDto.Email);
+
+            var findUserPassword = findUser.Password;
             
             if( findUser == null )
             {
                 return BadRequest(new {message = "Email or Password Invalid"});
             }
-
-            if( !BCrypt.Net.BCrypt.Verify(loginDto.Password, findUser.Password) ){
+                
+            if( !BCrypt.Net.BCrypt.Verify(loginDto.Password, findUserPassword) ){
                 return BadRequest(new {message ="Email or Password Invalid"});
             }
 
@@ -99,8 +100,41 @@ namespace api.Models.auth.Controllersv
             return Ok(new {message = "User logged"});
         }
 
-  
+      //SECTION 2 - Attempt with new gererateJwt
+        // [HttpGet]
+        // public IActionResult Login(LoginDto loginDto)
+        // {
+        //     var findUser = _usersAuthRepository.getByEmail(loginDto.Email);
+            
+        //     var findUserPassword = findUser.Password;
 
+        //     var authenticatedUser = 
+
+        //    if( findUser == null )
+        //     {
+        //         return BadRequest(new {message = "Email or Password Invalid"});
+        //     }
+                
+        //     if( !BCrypt.Net.BCrypt.Verify(loginDto.Password, findUserPassword) ){
+        //         return BadRequest(new {message ="Email or Password Invalid"});
+        //     }
+
+
+        //     var jwt = _jwtService.generateJwt(findUser);          
+          
+        //     //TODO - Create new login with email and password for pass in generatedJwt(New login)
+
+           
+        //     Response.Cookies.Append("jwt", jwt, new CookieOptions
+        //     {
+        //         HttpOnly = true,
+        //         Secure = true
+        //     });
+
+        //     return Ok(new {message = "User logged"});
+        // }
+
+        
         [HttpGet("user")]
         public IActionResult User()
         {
@@ -114,7 +148,16 @@ namespace api.Models.auth.Controllersv
                 
                 var user = _usersAuthRepository.getById(userId);
                 
-                return Ok( new{user, user.Name});
+                 var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, _jwtService.generateJwt(userId)), //NOTE - User.Identify.Name
+                // new Claim(ClaimTypes.Name, usersAuth.Name)
+                //new Claim(ClaimTypes.Role, usersAuth.Role) - User.IsInRole
+                  
+            };
+        
+
+                return Ok( new{user,claims, user.Name});
             
             }catch(Exception e){
 
