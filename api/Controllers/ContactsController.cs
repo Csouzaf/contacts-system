@@ -57,11 +57,12 @@ namespace api.Controllers
             try{
                 
                 //FIXME - Get id user authenticated with NameIdentifier
-                var userAuthenticated = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var retrievedUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var retrieveUserName = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
                 
-                if(userAuthenticated != null){
+                if(retrievedUserId != null){
      
-                    return Ok(new {userAuthenticated, message = "User Retrieve in Contacts Router"});
+                    return Ok(new {retrievedUserId, retrieveUserName, message = "User Retrieve in Contacts Router"});
                     
                 }
 

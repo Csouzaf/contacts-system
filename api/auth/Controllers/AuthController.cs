@@ -8,6 +8,7 @@ using api.Models.auth.Model;
 using api.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Models.auth.Controllersv 
@@ -22,13 +23,16 @@ namespace api.Models.auth.Controllersv
         private readonly IAuthUserEmailRepository _iAuthUserEmailRepository;
         private readonly IContactsRepository _iContactsRepository;
         
+         private readonly UserManager<IdentityUser> _userManager;
         public AuthController(IUsersAuthRepository usersAuthRepository, JwtService jwtService, 
-        IAuthUserEmailRepository iAuthUserEmailRepository,  IContactsRepository iContactsRepository)
+        IAuthUserEmailRepository iAuthUserEmailRepository,  IContactsRepository iContactsRepository
+        , UserManager<IdentityUser> userManager)
         {
             _usersAuthRepository = usersAuthRepository;
             _jwtService = jwtService;
             _iAuthUserEmailRepository = iAuthUserEmailRepository;
             _iContactsRepository = iContactsRepository;
+            _userManager = userManager;
 
         }
 
@@ -77,7 +81,7 @@ namespace api.Models.auth.Controllersv
         {
             //NOTE - Find the user e-mail already registered in the repository pass to Email in loginDto
             var findUser = _usersAuthRepository.getByEmail(loginDto.Email);
-
+           
             var findUserPassword = findUser.Password;
             
             if( findUser == null )
@@ -89,7 +93,7 @@ namespace api.Models.auth.Controllersv
                 return BadRequest(new {message ="Email or Password Invalid"});
             }
 
-            var jwt = _jwtService.generateJwt(findUser.Id);
+            var jwt = _jwtService.generateJwt(findUser.Id, findUser.Name);
 
             Response.Cookies.Append("jwt", jwt, new CookieOptions
             {
@@ -136,10 +140,11 @@ namespace api.Models.auth.Controllersv
 
         
         [HttpGet("user")]
-        public IActionResult User()
+        public async Task<IActionResult> User()
         {
             try{
-
+           
+                 
                 var jwt = Request.Cookies["jwt"];
 
                 var token = _jwtService.verifyJwt(jwt);
@@ -147,17 +152,18 @@ namespace api.Models.auth.Controllersv
                 int userId = int.Parse(token.Issuer);
                 
                 var user = _usersAuthRepository.getById(userId);
+                // var username = _usersAuthRepository.getName(jwt);
                 
-                 var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, _jwtService.generateJwt(userId)), //NOTE - User.Identify.Name
-                // new Claim(ClaimTypes.Name, usersAuth.Name)
-                //new Claim(ClaimTypes.Role, usersAuth.Role) - User.IsInRole
+            //      var claims = new List<Claim>
+            // {
+            //     new Claim(ClaimTypes.NameIdentifier, _jwtService.generateJwt(userId, )), //NOTE - User.Identify.Name
+            //     new Claim(ClaimTypes.Name, user.Name)
+            //     //new Claim(ClaimTypes.Role, usersAuth.Role) - User.IsInRole
                   
-            };
+            // };
         
 
-                return Ok( new{user,claims, user.Name});
+                return Ok( new{user, user.Name});
             
             }catch(Exception e){
 
