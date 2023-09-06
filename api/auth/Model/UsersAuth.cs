@@ -17,9 +17,12 @@ namespace api.Models.auth.Model
 
         [Required]
         public AuthUserEmail? authUserEmail { get; set; }
-        
+
         [Required]
-        public ICollection<ContactsModel> contactsModel { get; } = new List<ContactsModel>();
+        public UserRegisteredModel? userRegisteredModel { get; set; }
+        
+       
+      
 
     }
 }

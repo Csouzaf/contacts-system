@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -32,6 +33,10 @@ builder.Services.AddEntityFrameworkSqlServer().AddDbContext<AuthUserEmailDbConte
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+builder.Services.AddEntityFrameworkSqlServer().AddDbContext<UserRegisteredDbContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
 // builder.Services.AddEntityFrameworkSqlServer().Add
 
 builder.Services.AddScoped<IContactsRepository, ContactsServices>();
@@ -39,6 +44,8 @@ builder.Services.AddScoped<IContactsRepository, ContactsServices>();
 builder.Services.AddScoped<IUsersAuthRepository, UsersAuthService>();
 
 builder.Services.AddScoped<IAuthUserEmailRepository, AuthUserEmailService>();
+
+builder.Services.AddScoped<IUserRegisteredRepository, UserRegisteredService>();
 
 builder.Services.AddScoped<JwtService>();
 

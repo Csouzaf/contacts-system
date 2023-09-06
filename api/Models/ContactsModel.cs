@@ -14,10 +14,10 @@ namespace api.Models
         public string Email { get; set; } = string.Empty;
         public string Telefone { get; set; } = string.Empty;
 
-        [ForeignKey("UsersAuth")]
-        public int usersAuthId { get; set; }
+        [ForeignKey("UserRegisteredModel")]
+        public int userRegisteredId { get; set; }
 
-        public UsersAuth usersAuth { get; set; }
+        public UserRegisteredModel? userRegisteredModel { get; set; }
 
     }
 }

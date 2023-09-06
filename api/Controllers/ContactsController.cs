@@ -1,3 +1,4 @@
+using System.Net;
 using System;
 using api.Models;
 using api.Repository;
@@ -62,7 +63,7 @@ namespace api.Controllers
                 
                 if(retrievedUserId != null){
      
-                    return Ok(new {retrievedUserId, retrieveUserName, message = "User Retrieve in Contacts Router"});
+                    return Ok(new {retrievedUserId, retrieveUserName, message = "User RetrieveD in Contacts Router"});
                     
                 }
 
@@ -74,6 +75,29 @@ namespace api.Controllers
            return null;
     
         }
+
+
+    //    [HttpPost("send")]
+    //    public Task<IActionResult> createContacts()
+    //    {
+    //         //TODO - Insert contacts/tasks from userauthenticated
+    //         try{
+
+    //             var verifyUserIsAuthenticated = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                
+    //             if(verifyUserIsAuthenticated != null)
+    //             {
+
+    //             }   
+    //         }   
+
+    //         catch(Exception e){
+    //             return BadRequest(e.Message);
+    //         }
+
+    //         return null;
+
+    //    }
 
        [HttpPut("{id}")]
        public async Task<IActionResult> updateContacts([FromBody] ContactsModel contactsModel, int id)

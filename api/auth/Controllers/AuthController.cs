@@ -104,39 +104,7 @@ namespace api.Models.auth.Controllersv
             return Ok(new {message = "User logged"});
         }
 
-      //SECTION 2 - Attempt with new gererateJwt
-        // [HttpGet]
-        // public IActionResult Login(LoginDto loginDto)
-        // {
-        //     var findUser = _usersAuthRepository.getByEmail(loginDto.Email);
-            
-        //     var findUserPassword = findUser.Password;
-
-        //     var authenticatedUser = 
-
-        //    if( findUser == null )
-        //     {
-        //         return BadRequest(new {message = "Email or Password Invalid"});
-        //     }
-                
-        //     if( !BCrypt.Net.BCrypt.Verify(loginDto.Password, findUserPassword) ){
-        //         return BadRequest(new {message ="Email or Password Invalid"});
-        //     }
-
-
-        //     var jwt = _jwtService.generateJwt(findUser);          
-          
-        //     //TODO - Create new login with email and password for pass in generatedJwt(New login)
-
-           
-        //     Response.Cookies.Append("jwt", jwt, new CookieOptions
-        //     {
-        //         HttpOnly = true,
-        //         Secure = true
-        //     });
-
-        //     return Ok(new {message = "User logged"});
-        // }
+     
 
         
         [HttpGet("user")]
@@ -152,16 +120,6 @@ namespace api.Models.auth.Controllersv
                 int userId = int.Parse(token.Issuer);
                 
                 var user = _usersAuthRepository.getById(userId);
-                // var username = _usersAuthRepository.getName(jwt);
-                
-            //      var claims = new List<Claim>
-            // {
-            //     new Claim(ClaimTypes.NameIdentifier, _jwtService.generateJwt(userId, )), //NOTE - User.Identify.Name
-            //     new Claim(ClaimTypes.Name, user.Name)
-            //     //new Claim(ClaimTypes.Role, usersAuth.Role) - User.IsInRole
-                  
-            // };
-        
 
                 return Ok( new{user, user.Name});
             
