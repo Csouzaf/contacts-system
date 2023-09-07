@@ -48,7 +48,7 @@ namespace api.auth.Services
             }    
             
             findUserById.Email = authUserEmail.Email;
-            findUserById.UserAuthId = authUserEmail.UserAuthId;
+            findUserById.userAuthId = authUserEmail.userAuthId;
 
             _authUserEmailDbContext.authUserEmails.Update(findUserById);
             _authUserEmailDbContext.SaveChanges();

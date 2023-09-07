@@ -17,7 +17,7 @@ namespace api.Models
         [ForeignKey("UserRegisteredModel")]
         public int userRegisteredId { get; set; }
 
-        public UserRegisteredModel? userRegisteredModel { get; set; }
+        public UserRegisteredModel userRegisteredModel { get; set; }
 
     }
 }

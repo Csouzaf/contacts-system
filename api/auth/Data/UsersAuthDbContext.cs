@@ -22,27 +22,31 @@ namespace api.Models.auth.Data
             modelBuilder.Entity<UsersAuth>(entity => {
                 entity.HasIndex(e => e.Email).IsUnique();
             });
+
+            
+           //NOTE - Relantionship 1 to N between UserRegisteredModel plus contactsModel
+            modelBuilder.Entity<UserRegisteredModel>()
+                .HasMany(u => u.colletctionContactsModels)
+                .WithOne(u => u.userRegisteredModel)
+                .HasForeignKey(u => u.userRegisteredId)
+                .OnDelete(DeleteBehavior.NoAction);           
             
             //NOTE - As UsersAuth is the main relantionship (father), it's came first instead authUserEmail
             modelBuilder.Entity<UsersAuth>()
                 .HasOne(e => e.authUserEmail)
                 .WithOne(e => e.UsersAuth)
-                .HasForeignKey<AuthUserEmail>(e => e.UserAuthId);
+                .HasForeignKey<AuthUserEmail>(e => e.userAuthId);
             
-            //NOTE - Relantionship 1 to 1 between UsersAuth plus UserRegisteredModel
-            modelBuilder.Entity<UsersAuth>()
-                .HasOne(n => n.userRegisteredModel)
-                .WithOne(n => n.usersAuth)
-                .HasForeignKey<UserRegisteredModel>(n => n.usersAuthenticatedId);
-
-
-           //NOTE - Relantionship 1 to N between UserRegisteredModel plus contactsModel
+            //NOTE - Relantionship 1 to 0 between UsersAuth plus UserRegisteredModel
+            //NOTE - Gotta be because when we create the user in signup router, we will need create besides authUserEmail the UserRegisteredModel too
+            //NOTE - But the purpose is get usersAuth id in UserRegisteredModel and not opposite
             modelBuilder.Entity<UserRegisteredModel>()
-                .HasMany(u => u.colletctionContactsModels)
-                .WithOne(u => u.userRegisteredModel)
-                .HasForeignKey(u => u.userRegisteredId);
-                
-            base.OnModelCreating(modelBuilder);
+                .HasOne(n => n.usersAuth)
+                .WithOne()
+                .HasForeignKey<UserRegisteredModel>(n => n.usersAuthenticatedId);
+            
+          //TODO - Resolver Relacionamento aqui
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

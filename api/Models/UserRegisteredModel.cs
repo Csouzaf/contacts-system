@@ -13,15 +13,12 @@ namespace api.Models
 
         //NOTE - Relantionship 1 to 1 with UsersAuth
         [ForeignKey("UsersAuth")]
-        public int usersAuthenticatedId { get; set; }
-        public UsersAuth usersAuth { get; set; }
-
-
-
-        public ContactsModel contactsModel { get; set; }
+        public int usersAuthenticatedId  {get; set; }
         
-     
-        public ICollection<ContactsModel> colletctionContactsModels { get; set; } = new List<ContactsModel>();
+        public UsersAuth? usersAuth { get; set; }
+            
+        [Required]   
+        public ICollection<ContactsModel> colletctionContactsModels { get; } = new List<ContactsModel>();
 
 
     }

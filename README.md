@@ -17,9 +17,7 @@ What you need to run the project about registration of people:
 
 3. **Run .NET 6**:
 >Configuration SQL Server In appsetting.json: <br>
->>"ConnectionStrings":{"DefaultConnection":"Server=NAME YOUR SQL SERVER ACCOUNT;Database=NAME YOUR DATABASE;Trusted_Connection=True;Integrated Security=True"} <br>
-
->**IMPORTANT: If you dowload this project with migration already create, delete it and create a new migration with step by step bellow:** <br>
+>>"ConnectionStrings":{"DefaultConnection":"Server=NAME YOUR SQL SERVER ACCOUNT LIKE: MYUSERNAME\\SQLEXPRESS;Database=NAME YOUR DATABASE;Trusted_Connection=True;Integrated Security=True"} <br>
 
 >Create Relantionship between Authentication and Contacts Migrations: <br>
 

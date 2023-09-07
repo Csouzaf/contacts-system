@@ -11,11 +11,13 @@ namespace api.auth.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; } 
         
-        public string Email { get; set; } 
+        public string? Email { get; set; } 
 
         [ForeignKey("UsersAuth")]        
-        public int UserAuthId { get; set; }
-        public UsersAuth UsersAuth { get; set; } 
+        public int userAuthId { get; set; }
+        
+        [Required]
+        public UsersAuth? UsersAuth { get; set; } 
        
     }
 }

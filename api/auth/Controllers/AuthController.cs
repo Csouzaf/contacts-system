@@ -57,9 +57,13 @@ namespace api.Models.auth.Controllersv
                 {
                     
                     Email = createdUser.Email,
-                    UserAuthId = createdUser.Id
+                    userAuthId = createdUser.Id
     
                 };
+
+                // var UserRegisteredModel = new UserRegisteredModel{
+                //     usersAuthenticatedId = createdUser.Id
+                // };
 
 
                var createdAuthUserEmail = _iAuthUserEmailRepository.Create(authUserEmail);
