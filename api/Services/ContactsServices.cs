@@ -20,21 +20,21 @@ namespace api.Services
         }
         
 
-        public async Task<List<ContactsModel>> findAll()
+        public List<ContactsModel> findAll()
         {
-            return await _usersDbContextModel.contactsModel.ToListAsync();
+            return _usersDbContextModel.contactsModel.ToList();
         }
 
-        public async Task<ContactsModel> findById(int id)
+        public ContactsModel findById(int id)
         {
-            return await _usersDbContextModel.contactsModel.FirstOrDefaultAsync(x => x.Id == id);
+            return _usersDbContextModel.contactsModel.FirstOrDefault(x => x.Id == id);
         }
 
-        public async Task<ContactsModel> createUser(ContactsModel contactsModel)
+        public  ContactsModel createUser(ContactsModel contactsModel)
         {
             try{
-                 await _usersDbContextModel.contactsModel.AddAsync(contactsModel);
-                 await _usersDbContextModel.SaveChangesAsync();
+                 _usersDbContextModel.contactsModel.Add(contactsModel);
+                 _usersDbContextModel.SaveChanges();
                  return contactsModel;
 
             }catch(Exception e){
@@ -44,10 +44,10 @@ namespace api.Services
           
         }
 
-        public async Task<ContactsModel> updateUser(ContactsModel contactsModel, int id)
+        public  ContactsModel updateUser(ContactsModel contactsModel, int id)
         {
          
-           ContactsModel findUsersById = await findById(id);
+           ContactsModel findUsersById = findById(id);
 
            if(findById == null){
             throw new Exception("Não foi possível encontrar o usuário");
@@ -59,14 +59,14 @@ namespace api.Services
            
            _usersDbContextModel.contactsModel.Update(findUsersById);
            
-           await _usersDbContextModel.SaveChangesAsync();
+           _usersDbContextModel.SaveChanges();
 
            return findUsersById;
         }
 
-        public async Task<bool> deleteUser(int id)
+        public  bool deleteUser(int id)
         {
-            ContactsModel findUsersById = await findById(id);
+            ContactsModel findUsersById = findById(id);
 
             if(findUsersById == null)
             {
@@ -75,7 +75,7 @@ namespace api.Services
 
             _usersDbContextModel.contactsModel.Remove(findUsersById);
             
-            await _usersDbContextModel.SaveChangesAsync();
+            _usersDbContextModel.SaveChanges();
 
             return true;
             

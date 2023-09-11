@@ -22,23 +22,25 @@ namespace api.Controllers
         //NOTE - User HttpContext for retrieve http but without comunication between services, so use HttpContextAccessor
         private readonly IHttpContextAccessor _ihttpContextAccessor;
         private readonly IUsersAuthRepository _usersAuthRepository;
+        private readonly IUserRegisteredRepository _usersRegisteredRepository;
         
-        public ContactsController(IContactsRepository iContactsRepository, IHttpContextAccessor ihttpContextAccessor)
+        public ContactsController(IUserRegisteredRepository usersRegisteredRepository, IContactsRepository iContactsRepository, IHttpContextAccessor ihttpContextAccessor)
         {
             _icontactsRepository = iContactsRepository;
             _ihttpContextAccessor = ihttpContextAccessor;
+            _usersRegisteredRepository = usersRegisteredRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ContactsModel>>> getAllContacts()
+        public ActionResult<IEnumerable<ContactsModel>> getAllContacts()
         {
-            return await _icontactsRepository.findAll();
+            return _icontactsRepository.findAll();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ContactsModel>> getContacts(int id)
+        public ActionResult<ContactsModel> getContacts(int id)
         {
-            ContactsModel users = await _icontactsRepository.findById(id);
+            ContactsModel users = _icontactsRepository.findById(id);
 
             if(users == null)
             {
@@ -76,34 +78,68 @@ namespace api.Controllers
     
         }
 
+       [Authorize]
+       [HttpPost("create")]
+       public IActionResult CreateContacts([FromBody] ContactsModel contactsModel)
+       {
 
-    //    [HttpPost("send")]
-    //    public Task<IActionResult> createContacts()
-    //    {
-    //         //TODO - Insert contacts/tasks from userauthenticated
-    //         try{
+            try{
 
-    //             var verifyUserIsAuthenticated = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var verifyUserIsAuthenticated = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 
-    //             if(verifyUserIsAuthenticated != null)
-    //             {
+                if(verifyUserIsAuthenticated != null)
+                {
+                
+                    //TODO - create contact
+                    // var createContactsFromUserRegistered = new ContactsModel{
+                        
+                    //     Nome = contactsModel.Nome,
+                    //     Email = contactsModel.Email,
+                    //     Telefone = contactsModel.Telefone
+                        
+                    // };
+                    var contactsCreated = _icontactsRepository.createUser(contactsModel);
+                    
+                    // var findUserAuthById = _usersAuthRepository.getById(id);
+                        
+                        // if(findUserAuthById != null){
+                    
+                    //TODO - Create collection on UserRegisteredModel
 
-    //             }   
-    //         }   
+                    //REVIEW - Error in https://localhost:7087/api/contacts/create => "userRegisteredModel": "The userRegisteredModel field is required."
+                    
+                    //NOTE - To test if without userRegisteredModel and one to N the userAuthenticated get add contacts
+                            int findUserAuthById = int.Parse(verifyUserIsAuthenticated);
+                            
 
-    //         catch(Exception e){
-    //             return BadRequest(e.Message);
-    //         }
+                            var userRegisteredModel = new UserRegisteredModel
+                            {   
+                               
+                                usersAuthenticatedId = findUserAuthById
 
-    //         return null;
+                            };
 
-    //    }
+                            var userRegisteredContacts = _usersRegisteredRepository.CreateContacts(userRegisteredModel);
+                        
+                            return Ok(new {contactsCreated, userRegisteredContacts});
+                        // }    
+              
+                }   
+            }   
+
+            catch(Exception e){
+                return BadRequest(new{Message = "Bug", e});
+            }
+
+            return null;
+
+       }
 
        [HttpPut("{id}")]
-       public async Task<IActionResult> updateContacts([FromBody] ContactsModel contactsModel, int id)
+       public IActionResult updateContacts([FromBody] ContactsModel contactsModel, int id)
        {
             try{
-                var update = await _icontactsRepository.updateUser(contactsModel, id);
+                var update = _icontactsRepository.updateUser(contactsModel, id);
                 return Ok(update);
             }
 
@@ -114,10 +150,10 @@ namespace api.Controllers
        }
 
        [HttpDelete("{id}")]
-       public async Task<IActionResult> deleteContacts(int id)
+       public IActionResult deleteContacts(int id)
        {
             try{
-                var delete = await _icontactsRepository.deleteUser(id);
+                var delete = _icontactsRepository.deleteUser(id);
                 return Ok(delete);
             }
             catch(Exception e){

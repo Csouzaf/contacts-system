@@ -8,16 +8,23 @@ namespace api.Models
     public class ContactsModel
     {
         [Key]
+        [ForeignKey("UserRegisteredModel")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Telefone { get; set; } = string.Empty;
 
-        [ForeignKey("UserRegisteredModel")]
-        public int userRegisteredId { get; set; }
 
-        public UserRegisteredModel userRegisteredModel { get; set; }
+        // [ForeignKey("UsersAuth")]
+        // [Required]
+        // public int userRegisteredId { get; set; }
+
+        // [Required]
+        // public UsersAuth? usersAuth { get; set; }
+
+        [Required]
+        public UserRegisteredModel? userRegisteredModel { get; set; }
 
     }
 }

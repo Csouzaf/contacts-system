@@ -28,8 +28,8 @@ namespace api.Models.auth.Data
             modelBuilder.Entity<UserRegisteredModel>()
                 .HasMany(u => u.colletctionContactsModels)
                 .WithOne(u => u.userRegisteredModel)
-                .HasForeignKey(u => u.userRegisteredId)
-                .OnDelete(DeleteBehavior.NoAction);           
+                .HasForeignKey(u => u.Id);
+                      
             
             //NOTE - As UsersAuth is the main relantionship (father), it's came first instead authUserEmail
             modelBuilder.Entity<UsersAuth>()
@@ -38,14 +38,18 @@ namespace api.Models.auth.Data
                 .HasForeignKey<AuthUserEmail>(e => e.userAuthId);
             
             //NOTE - Relantionship 1 to 0 between UsersAuth plus UserRegisteredModel
-            //NOTE - Gotta be because when we create the user in signup router, we will need create besides authUserEmail the UserRegisteredModel too
+            //NOTE - Gotta be because when we create the user in signup router, we will need create besides authUserEmail, the UserRegisteredModel too
             //NOTE - But the purpose is get usersAuth id in UserRegisteredModel and not opposite
             modelBuilder.Entity<UserRegisteredModel>()
                 .HasOne(n => n.usersAuth)
                 .WithOne()
                 .HasForeignKey<UserRegisteredModel>(n => n.usersAuthenticatedId);
             
-          //TODO - Resolver Relacionamento aqui
+
+            // modelBuilder.Entity<ContactsModel>()
+            //     .HasOne(userRegistered => userRegistered.usersAuth)
+            //     .WithOne()
+            //     .HasForeignKey<UserRegisteredModel>(userRegistered => userRegistered.);
 
         }
 

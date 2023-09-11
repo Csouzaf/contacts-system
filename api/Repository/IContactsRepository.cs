@@ -6,10 +6,10 @@ namespace api.Repository
     public interface IContactsRepository
     {
      
-      Task<List<ContactsModel>> findAll();
-      Task<ContactsModel> findById(int id);
-      Task<ContactsModel> createUser(ContactsModel contactsModel);
-      Task<ContactsModel> updateUser(ContactsModel contactsModel, int id);
-      Task<bool> deleteUser(int id);
+      List<ContactsModel> findAll();
+      ContactsModel findById(int id);
+      ContactsModel createUser(ContactsModel contactsModel);
+      ContactsModel updateUser(ContactsModel contactsModel, int id);
+      bool deleteUser(int id);
     }
 }

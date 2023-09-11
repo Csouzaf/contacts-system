@@ -18,8 +18,6 @@ namespace api.Models.auth.Model
         [Required]
         public AuthUserEmail? authUserEmail { get; set; }
 
-        // [Required]
-        // public UserRegisteredModel? userRegisteredModel { get; set; }
         
        
       

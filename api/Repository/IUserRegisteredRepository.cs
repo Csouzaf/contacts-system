@@ -8,6 +8,6 @@ namespace api.Repository
 {
     public interface IUserRegisteredRepository
     {
-        UserRegisteredModel Create(UserRegisteredModel userRegisteredModel);
+        UserRegisteredModel CreateContacts(UserRegisteredModel userRegisteredModel);
     }
 }
