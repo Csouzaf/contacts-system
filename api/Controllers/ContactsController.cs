@@ -14,7 +14,7 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
- 
+    [Authorize]
     public class ContactsController : Controller
     {
         private readonly IContactsRepository _icontactsRepository;
@@ -22,13 +22,14 @@ namespace api.Controllers
         //NOTE - User HttpContext for retrieve http but without comunication between services, so use HttpContextAccessor
         private readonly IHttpContextAccessor _ihttpContextAccessor;
         private readonly IUsersAuthRepository _usersAuthRepository;
-        private readonly IUserRegisteredRepository _usersRegisteredRepository;
+        // private readonly IUserRegisteredRepository _usersRegisteredRepository;
         
-        public ContactsController(IUserRegisteredRepository usersRegisteredRepository, IContactsRepository iContactsRepository, IHttpContextAccessor ihttpContextAccessor)
+        public ContactsController( IContactsRepository iContactsRepository, IUsersAuthRepository usersAuthRepository, IHttpContextAccessor ihttpContextAccessor)
         {
             _icontactsRepository = iContactsRepository;
             _ihttpContextAccessor = ihttpContextAccessor;
-            _usersRegisteredRepository = usersRegisteredRepository;
+            _usersAuthRepository = usersAuthRepository;
+            // _usersRegisteredRepository = usersRegisteredRepository;
         }
 
         [HttpGet]
@@ -48,9 +49,7 @@ namespace api.Controllers
             }
             return users;
         }
-
-    //TODO - Get userAuthenticated, because is returned ok but userAuthenticated = null
-        [Authorize]
+       
         [HttpGet("auth")]
         public IActionResult UserAuthenticated()
         {
@@ -62,7 +61,7 @@ namespace api.Controllers
                 //FIXME - Get id user authenticated with NameIdentifier
                 var retrievedUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var retrieveUserName = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
-                
+            
                 if(retrievedUserId != null){
      
                     return Ok(new {retrievedUserId, retrieveUserName, message = "User RetrieveD in Contacts Router"});
@@ -78,7 +77,7 @@ namespace api.Controllers
     
         }
 
-       [Authorize]
+      
        [HttpPost("create")]
        public IActionResult CreateContacts([FromBody] ContactsModel contactsModel)
        {
@@ -86,45 +85,34 @@ namespace api.Controllers
             try{
 
                 var verifyUserIsAuthenticated = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                
-                if(verifyUserIsAuthenticated != null)
-                {
-                
-                    //TODO - create contact
-                    // var createContactsFromUserRegistered = new ContactsModel{
-                        
-                    //     Nome = contactsModel.Nome,
-                    //     Email = contactsModel.Email,
-                    //     Telefone = contactsModel.Telefone
-                        
-                    // };
-                    var contactsCreated = _icontactsRepository.createUser(contactsModel);
-                    
-                    // var findUserAuthById = _usersAuthRepository.getById(id);
-                        
-                        // if(findUserAuthById != null){
-                    
-                    //TODO - Create collection on UserRegisteredModel
+        
+                    if(verifyUserIsAuthenticated != null)
+                    {
+                           
 
-                    //REVIEW - Error in https://localhost:7087/api/contacts/create => "userRegisteredModel": "The userRegisteredModel field is required."
-                    
-                    //NOTE - To test if without userRegisteredModel and one to N the userAuthenticated get add contacts
-                            int findUserAuthById = int.Parse(verifyUserIsAuthenticated);
+                        
+                        int findUserAuthById = int.Parse(verifyUserIsAuthenticated);
+                        
+                        contactsModel.userRegisteredId = findUserAuthById;
+                        
+                        //TODO - create contact
+                        var createContactsFromUsersAuth = new ContactsModel
+                        {
                             
+                            Nome = contactsModel.Nome,
+                            Email = contactsModel.Email,
+                            Telefone = contactsModel.Telefone,
+                            userRegisteredId = findUserAuthById
+                    
+                        };
 
-                            var userRegisteredModel = new UserRegisteredModel
-                            {   
-                               
-                                usersAuthenticatedId = findUserAuthById
-
-                            };
-
-                            var userRegisteredContacts = _usersRegisteredRepository.CreateContacts(userRegisteredModel);
+                        var contactsCreated = _icontactsRepository.createUser(createContactsFromUsersAuth);
                         
-                            return Ok(new {contactsCreated, userRegisteredContacts});
-                        // }    
-              
-                }   
+                        return Created("succes", new {contactsCreated});
+                            
+                
+                    }
+               
             }   
 
             catch(Exception e){
@@ -132,6 +120,7 @@ namespace api.Controllers
             }
 
             return null;
+
 
        }
 

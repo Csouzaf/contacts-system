@@ -61,10 +61,6 @@ namespace api.Models.auth.Controllersv
     
                 };
 
-                // var UserRegisteredModel = new UserRegisteredModel{
-                //     usersAuthenticatedId = createdUser.Id
-                // };
-
 
                var createdAuthUserEmail = _iAuthUserEmailRepository.Create(authUserEmail);
 

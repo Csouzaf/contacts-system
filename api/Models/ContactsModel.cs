@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using api.Models.auth.Model;
+using System.Text.Json.Serialization;
 
 namespace api.Models
 {
@@ -8,7 +9,6 @@ namespace api.Models
     public class ContactsModel
     {
         [Key]
-        [ForeignKey("UserRegisteredModel")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;
@@ -16,15 +16,13 @@ namespace api.Models
         public string Telefone { get; set; } = string.Empty;
 
 
-        // [ForeignKey("UsersAuth")]
-        // [Required]
-        // public int userRegisteredId { get; set; }
-
-        // [Required]
-        // public UsersAuth? usersAuth { get; set; }
-
+        [ForeignKey("UsersAuth")]
         [Required]
-        public UserRegisteredModel? userRegisteredModel { get; set; }
+        public int userRegisteredId { get; set; }
+
+        [JsonIgnore] //NOTE - Because the UsersAuth will be salved as field required 
+        public UsersAuth? UsersAuth { get; set; }
+
 
     }
 }

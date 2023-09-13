@@ -13,8 +13,7 @@ namespace api.Models.auth.Data
         }
 
         public DbSet<UsersAuth> usersAuth { get; set; }
-        public DbSet<AuthUserEmail> authUserEmails { get; set; }
-        public DbSet<UserRegisteredModel> userRegisteredModel { get; set; }
+
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,10 +24,11 @@ namespace api.Models.auth.Data
 
             
            //NOTE - Relantionship 1 to N between UserRegisteredModel plus contactsModel
-            modelBuilder.Entity<UserRegisteredModel>()
-                .HasMany(u => u.colletctionContactsModels)
-                .WithOne(u => u.userRegisteredModel)
-                .HasForeignKey(u => u.Id);
+            // modelBuilder.Entity<UserRegisteredModel>()
+            //     .HasMany(u => u.colletctionContactsModels)
+            //     .WithOne(u => u.userRegisteredModel)
+            //     .HasForeignKey(u => u.Id)
+            //     .IsRequired();
                       
             
             //NOTE - As UsersAuth is the main relantionship (father), it's came first instead authUserEmail
@@ -36,14 +36,20 @@ namespace api.Models.auth.Data
                 .HasOne(e => e.authUserEmail)
                 .WithOne(e => e.UsersAuth)
                 .HasForeignKey<AuthUserEmail>(e => e.userAuthId);
+
+            modelBuilder.Entity<UsersAuth>()
+                .HasMany(e => e.colletctionContactsModels)
+                .WithOne(e => e.UsersAuth)
+                .HasForeignKey(e=> e.userRegisteredId)
+                .IsRequired();
             
             //NOTE - Relantionship 1 to 0 between UsersAuth plus UserRegisteredModel
             //NOTE - Gotta be because when we create the user in signup router, we will need create besides authUserEmail, the UserRegisteredModel too
             //NOTE - But the purpose is get usersAuth id in UserRegisteredModel and not opposite
-            modelBuilder.Entity<UserRegisteredModel>()
-                .HasOne(n => n.usersAuth)
-                .WithOne()
-                .HasForeignKey<UserRegisteredModel>(n => n.usersAuthenticatedId);
+            // modelBuilder.Entity<UserRegisteredModel>()
+            //     .HasOne(n => n.usersAuth)
+            //     .WithOne()
+            //     .HasForeignKey<UserRegisteredModel>(n => n.usersAuthenticatedId);
             
 
             // modelBuilder.Entity<ContactsModel>()
