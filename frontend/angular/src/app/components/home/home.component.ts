@@ -21,41 +21,18 @@ export class HomeComponent implements OnInit {
   constructor(private homeUserauthService : HomeUserauthService, private cookieService: CookieService){}
 
   ngOnInit(): void {
-    this.getAll()
-    // const token = this.cookieService.get("jwt")
-
-
-
-    //   if(token !== null){
-    //  const getUserAuthenticated = JSON.parse(window.atob(token.split('.')[1]))
-
-    //     console.log("name", getUserAuthenticated.name)
-    // if(token !== null){
-    //   const user: UsersAuth = {
-    //     id: decodedToken.id,
-    //     name: decodedToken.name
-    //   };
-      // }
-      // else{
-      //   console.log("null")
-      // }
-    }
-
-
-    getAll(){
+    //Get the user as name or id... from backend
       this.homeUserauthService.getAll().subscribe((result)=>{
-
+        this.users = result
         console.log(result)
       })
+
     }
 
-    // error => {
-    //   console.error(error)
-    // })
 
-    // this.current = this.homeUserauthService.getUser();
+    }
 
-  }
+
 
 
 
