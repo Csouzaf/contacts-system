@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M6xWTVsO1iyfi9K5vRcODIpWgF+PwRGs60o4VlYdm16L4i7zRNXXdnGylpkkuq/GfXu3aWTyS3l1meYlg3uVOA==",
+  "dgSpecHash": "AXENEKR/mpHQt+QkovzTp3ucxx/+oeMXVqBbWTXWSr6qeAHBK4hJCnjWpoawLBMTD5BrDxurE7A4nh9cpH55hw==",
   "success": true,
   "projectFilePath": "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.0\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.0.nupkg.sha512",
+    "C:\\Users\\csouz\\.nuget\\packages\\microsoft.aspnetcore.session\\2.0.0\\microsoft.aspnetcore.session.2.0.0.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.0.0\\microsoft.aspnetcore.webutilities.2.0.0.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",

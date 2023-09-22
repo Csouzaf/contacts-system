@@ -318,6 +318,26 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Session/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.DataProtection": "2.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Caching.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Options": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Session.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Session.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.WebUtilities/2.0.0": {
         "type": "package",
         "dependencies": {
@@ -1521,6 +1541,19 @@
         "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
         "microsoft.aspnetcore.identity.entityframeworkcore.6.0.0.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Session/2.0.0": {
+      "sha512": "sV8vGrZlX0q/7YQL2qaoOVvvJlctkkICoLPLQjqgqbYu/Gwg9YbjQQ19GnVGREbKZd1PzNtTIuZWaTHSFNmj2g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.session/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Session.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Session.xml",
+        "microsoft.aspnetcore.session.2.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.session.nuspec"
       ]
     },
     "Microsoft.AspNetCore.WebUtilities/2.0.0": {
@@ -2928,6 +2961,7 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.1",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.0",
+      "Microsoft.AspNetCore.Session >= 2.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.4",
@@ -2941,11 +2975,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
+      "projectUniqueName": "d:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
+      "projectPath": "d:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
       "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\obj\\",
+      "outputPath": "d:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2991,6 +3025,10 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.0, )"
+          },
+          "Microsoft.AspNetCore.Session": {
+            "target": "Package",
+            "version": "[2.0.0, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

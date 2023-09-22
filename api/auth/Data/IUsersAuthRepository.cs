@@ -8,7 +8,7 @@ namespace api.Models.auth.Data
         UsersAuth getByEmail(string Email);
         UsersAuth getById(int id);
         UsersAuth getName(string Name);
-    //  '   List<UsersAuth> getUsers();'
+        List<UsersAuth> getUsers();
 
     
     }

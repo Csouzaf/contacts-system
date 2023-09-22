@@ -9,6 +9,9 @@ using api.Models.auth.Data;
 
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using api.auth.jwt;
 
 namespace api.Controllers
 {
@@ -22,10 +25,11 @@ namespace api.Controllers
         //NOTE - User HttpContext for retrieve http but without comunication between services, so use HttpContextAccessor
         private readonly IHttpContextAccessor _ihttpContextAccessor;
         private readonly IUsersAuthRepository _usersAuthRepository;
-        // private readonly IUserRegisteredRepository _usersRegisteredRepository;
+        private readonly JwtService _jwtService;
         
-        public ContactsController( IContactsRepository iContactsRepository, IUsersAuthRepository usersAuthRepository, IHttpContextAccessor ihttpContextAccessor)
+        public ContactsController(JwtService jwtService, IContactsRepository iContactsRepository, IUsersAuthRepository usersAuthRepository, IHttpContextAccessor ihttpContextAccessor)
         {
+            _jwtService = jwtService;
             _icontactsRepository = iContactsRepository;
             _ihttpContextAccessor = ihttpContextAccessor;
             _usersAuthRepository = usersAuthRepository;
@@ -37,6 +41,7 @@ namespace api.Controllers
         {
             return _icontactsRepository.findAll();
         }
+
 
         [HttpGet("{id}")]
         public ActionResult<ContactsModel> getContacts(int id)
@@ -50,6 +55,7 @@ namespace api.Controllers
             return users;
         }
        
+       
         [HttpGet("auth")]
         public IActionResult UserAuthenticated()
         {
@@ -61,10 +67,11 @@ namespace api.Controllers
                 //FIXME - Get id user authenticated with NameIdentifier
                 var retrievedUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var retrieveUserName = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
-            
+                var jwtToken = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer", "");
+
                 if(retrievedUserId != null){
      
-                    return Ok(new {retrievedUserId, retrieveUserName, message = "User RetrieveD in Contacts Router"});
+                    return Ok(new {retrievedUserId, jwtToken, retrieveUserName, message = "User RetrieveD in Contacts Router"});
                     
                 }
 
@@ -76,8 +83,62 @@ namespace api.Controllers
            return null;
     
         }
+    //    [AllowAnonymous] 
+    //    [HttpGet("log")]
+    //    public async Task<IActionResult> LogoutUser()
+    //    {
+    
+    //         await HttpContext.SignOutAsync("jwt");
+           
+    //    }
+        
+        [HttpGet("logout")]
+        public IActionResult LogoutUser()
+        {
+           
+            var jwtToken = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer", "");
+            
+         
+                //NOTE - Method used with cookie-based authentication, not JWT tokens.
+                //HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                
+            //     HttpContext.Session.Clear();
+                
+            
+               if(jwtToken != null){
+                
+                    //NOTE - Delete in client side 
+                    Response.Cookies.Delete("jwt", new CookieOptions
+                {
+                    HttpOnly = true,
+                    SameSite = SameSiteMode.None,
+                    Secure = true,
 
-      
+                });
+                    Response.Headers.Remove(jwtToken);
+              
+               }
+              return Ok(new { message = "User logout"});
+            }
+            
+            // return Redirect("/api/auth/Controllers/AuthController.cs");
+            // return Ok(new { message = "User logout"});
+            //  await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    // await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+//    }
+            //FIXME - FIND A WAY TO LOGOUT USER
+            
+            // await HttpContext.SignOutAsync("jwt");
+
+         // Store revoked token IDs on the server
+          
+           
+
+// Token is valid; proceed with authentication
+
+
+
+
        [HttpPost("create")]
        public IActionResult CreateContacts([FromBody] ContactsModel contactsModel)
        {

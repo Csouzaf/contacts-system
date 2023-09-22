@@ -38,7 +38,6 @@ namespace api.auth.jwt
             var verifySimmetricBytesAndAlgorithmsSignature = new SigningCredentials(verifySymmetricBytesEncodeKey, SecurityAlgorithms.HmacSha256Signature);
 
             var username = _usersAuthRepository.getName(Name);
-            
      
             var claims = new List<Claim>
             {
@@ -48,7 +47,6 @@ namespace api.auth.jwt
                 // new Claim(ClaimTypes.Name, usersAuth.Name)
                 //new Claim(ClaimTypes.Role, usersAuth.Role) - User.IsInRole
             };
-
 
             var header = new JwtHeader(verifySimmetricBytesAndAlgorithmsSignature);
 

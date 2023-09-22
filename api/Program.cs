@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 // using api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,6 +76,7 @@ builder.Services.AddAuthentication(options =>
         
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+       
 
     })
     .AddJwtBearer(options =>
@@ -91,9 +93,18 @@ builder.Services.AddAuthentication(options =>
             // ValidAudience = "http://localhost:7087", // Replace with your audience
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"])), // Replace with your secret key
-            
+            //When time gonna zero the users get out home
+            ClockSkew = TimeSpan.Zero
         };
     });
+
+builder.Services.AddDistributedMemoryCache();
+
+// builder.Services.AddAuthentication(CookieAuthenticationDefaults).AddCookie(option => {
+//     option.L
+// })
+
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -118,7 +129,7 @@ app.UseCors(options => options.WithOrigins(new []{"http://localhost:7087","http:
     
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     //TODO - Change router to login

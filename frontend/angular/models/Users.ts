@@ -5,6 +5,6 @@ export interface Users
   email: string
   telefone: string
   usersAuthId: number
-  
+
 
 }

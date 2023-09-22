@@ -7,11 +7,12 @@ import { EditContactsComponent } from './components/contacts/edit-contacts/edit-
 import { RemoveContactsComponent } from './components/contacts/remove-contacts/remove-contacts.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
 
   {path: 'contacts', component: ContactsComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, },
   {path:'', redirectTo: '/login', pathMatch: 'full'},
   {path:'contacts/new', component: CreateContactsComponent},
   {path:'contacts/edit/:id',component:EditContactsComponent},

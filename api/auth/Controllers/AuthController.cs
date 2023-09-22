@@ -6,6 +6,7 @@ using api.auth.Model;
 using api.Models.auth.Data;
 using api.Models.auth.Model;
 using api.Repository;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Identity;
@@ -93,35 +94,37 @@ namespace api.Models.auth.Controllersv
                 return BadRequest(new {message ="Email or Password Invalid"});
             }
 
-            var jwt = _jwtService.generateJwt(findUser.Id, findUser.Name);
-
-            Response.Cookies.Append("jwt", jwt, new CookieOptions
+            var jwtToken = _jwtService.generateJwt(findUser.Id, findUser.Name);
+            
+            Response.Cookies.Append("jwt", jwtToken, new CookieOptions
             {
                 HttpOnly = true,
-                Secure = true
+                Secure = true,
+                //for retrieve jwt cookies without warning
+                SameSite = SameSiteMode.None
             });
 
-            return Ok(new {message = "User logged"});
+            //jwt = jwtToken for retrieve jwt in localsotrage
+            return Ok(new {message = "User logged", jwt = jwtToken});
         }
 
      
 
-        
-        [HttpGet("user")]
+        [Authorize]
+        [HttpGet("user")] 
         public async Task<IActionResult> User()
         {
             try{
-           
-                 
-                var jwt = Request.Cookies["jwt"];
+             
+                var jwtToken = Request.Cookies["jwt"];
 
-                var token = _jwtService.verifyJwt(jwt);
+                var token = _jwtService.verifyJwt(jwtToken);
 
                 int userId = int.Parse(token.Issuer);
                 
                 var user = _usersAuthRepository.getById(userId);
 
-                return Ok( new{user, user.Name});
+                return Ok( new {user, user.Name, jwt = jwtToken});
             
             }catch(Exception e){
 
@@ -132,13 +135,22 @@ namespace api.Models.auth.Controllersv
         [HttpGet("logout")]
         public IActionResult logoutUser()
         {
-            Response.Cookies.Delete("jwt", new CookieOptions
+                   
+                Response.Cookies.Delete("jwt", new CookieOptions
             {
                 HttpOnly = true,
                 Secure = true
             });
 
-            return Ok(new {message = "User logout"});
+            return Unauthorized();
+       
         }  
+        // [Authorize]
+        [HttpGet("list")]
+        public ActionResult<IEnumerable<UsersAuth>> GetUsers()
+        {
+          return _usersAuthRepository.getUsers();
+        }
+       
     }
 }

@@ -10,7 +10,7 @@
         <a class="nav-link active" aria-current="page"[routerLink]="'/home'">Home</a>
         <a class="nav-link" [routerLink]="'/contacts'">Contatos</a>
         <a class="nav-link" href="#">Sobre</a>
-        <a class="nav-link" [routerLink]="'/login'">Sair</a>
+        <a class="nav-link"(click)="logout()">Sair</a>
       </div>
     </div>
   </div>

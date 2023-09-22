@@ -1,8 +1,8 @@
 export interface UsersAuth
 {
+  id: number;
+  name: string;
+  
 
-  name: string
-  email: string
-  telefone: string
-  password: string
+
 }

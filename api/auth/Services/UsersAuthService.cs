@@ -54,6 +54,11 @@ namespace api.Models.auth.Services
           return _usersAuthDBContext.usersAuth.FirstOrDefault(u => u.Id == id);
         }
 
+        public List<UsersAuth> getUsers()
+        {
+          return _usersAuthDBContext.usersAuth.ToList();
+        }
+
 
     }
 }
