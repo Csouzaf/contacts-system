@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,7 +12,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 const routes: Routes = [
 
   {path: 'contacts', component: ContactsComponent},
-  {path: 'home', component: HomeComponent, },
+  {path: 'home', component: HomeComponent},
   {path:'', redirectTo: '/login', pathMatch: 'full'},
   {path:'contacts/new', component: CreateContactsComponent},
   {path:'contacts/edit/:id',component:EditContactsComponent},
@@ -20,6 +20,8 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent}
 ]
+//canActivate: [() => inject(AuthGuard)]
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),

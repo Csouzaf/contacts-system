@@ -8,7 +8,9 @@ import { NgToastService} from 'ng-angular-popup';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+
+export class AuthGuard {
+
   constructor(private homeUserauthService : HomeUserauthService, private toast : NgToastService, private router : Router){}
 
   canActivate(): boolean{
@@ -17,7 +19,7 @@ export class AuthGuard implements CanActivate {
     }
     else{
       this.toast.error({detail: "ERROR", summary: "Login firstly"})
-      this.router.navigate(['login'])
+      this.router.navigate(['/login'])
       return false;
     }
 

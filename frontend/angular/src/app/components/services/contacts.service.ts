@@ -11,6 +11,7 @@ import { Users } from '../../../../models/Users';
 export class ContactsService {
 
   private contactsURL = "https://localhost:7087/api/contacts";
+  private createContacts = "https://localhost:7087/api/contacts/create";
 
     httpOptions =
     {
@@ -34,7 +35,7 @@ export class ContactsService {
 
     postUsers(users: Users): Observable<Users>
     {
-      return this.http.post<Users>(this.contactsURL, users, this.httpOptions)
+      return this.http.post<Users>(this.createContacts, users, this.httpOptions)
 
     }
 

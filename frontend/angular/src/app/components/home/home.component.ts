@@ -16,13 +16,13 @@ import { Users } from 'models/Users';
 
 })
 export class HomeComponent implements OnInit {
-  users: UsersAuth[] = []
+ users!: UsersAuth
 
   constructor(private homeUserauthService : HomeUserauthService, private cookieService: CookieService){}
 
   ngOnInit(): void {
     //Get the user as name or id... from backend
-      this.homeUserauthService.getAll().subscribe((result)=>{
+      this.homeUserauthService.getUserAuthenticated().subscribe((result)=>{
         this.users = result
         console.log(result)
       })
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     }
 
 
-    }
+}
 
 
 

@@ -145,11 +145,11 @@ namespace api.Models.auth.Controllersv
             return Unauthorized();
        
         }  
-        // [Authorize]
+        [Authorize]
         [HttpGet("list")]
         public ActionResult<IEnumerable<UsersAuth>> GetUsers()
         {
-          return _usersAuthRepository.getUsers();
+          return Ok(_usersAuthRepository.getUsers());
         }
        
     }

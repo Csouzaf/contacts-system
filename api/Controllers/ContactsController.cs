@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using api.auth.jwt;
+using api.Models.auth.Model;
 
 namespace api.Controllers
 {
@@ -35,29 +36,10 @@ namespace api.Controllers
             _usersAuthRepository = usersAuthRepository;
             // _usersRegisteredRepository = usersRegisteredRepository;
         }
-
-        [HttpGet]
-        public ActionResult<IEnumerable<ContactsModel>> getAllContacts()
-        {
-            return _icontactsRepository.findAll();
-        }
-
-
-        [HttpGet("{id}")]
-        public ActionResult<ContactsModel> getContacts(int id)
-        {
-            ContactsModel users = _icontactsRepository.findById(id);
-
-            if(users == null)
-            {
-                return NotFound();
-            }
-            return users;
-        }
-       
+        
        
         [HttpGet("auth")]
-        public IActionResult UserAuthenticated()
+        public ActionResult<UsersAuth> UserAuthenticated()
         {
 
             //FIXME - _ihttpContextAccessor.HttpContext is null here, resolve
@@ -65,13 +47,13 @@ namespace api.Controllers
             try{
                 
                 //FIXME - Get id user authenticated with NameIdentifier
-                var retrievedUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                var retrieveUserName = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
+                var id = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var name = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
                 var jwtToken = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer", "");
 
-                if(retrievedUserId != null){
+                if(id != null){
      
-                    return Ok(new {retrievedUserId, jwtToken, retrieveUserName, message = "User RetrieveD in Contacts Router"});
+                    return Ok(new {id, jwtToken, name, message = "User RetrieveD in Contacts Router"});
                     
                 }
 
@@ -83,14 +65,7 @@ namespace api.Controllers
            return null;
     
         }
-    //    [AllowAnonymous] 
-    //    [HttpGet("log")]
-    //    public async Task<IActionResult> LogoutUser()
-    //    {
-    
-    //         await HttpContext.SignOutAsync("jwt");
-           
-    //    }
+
         
         [HttpGet("logout")]
         public IActionResult LogoutUser()
@@ -120,24 +95,7 @@ namespace api.Controllers
                }
               return Ok(new { message = "User logout"});
             }
-            
-            // return Redirect("/api/auth/Controllers/AuthController.cs");
-            // return Ok(new { message = "User logout"});
-            //  await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-    // await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
-//    }
-            //FIXME - FIND A WAY TO LOGOUT USER
-            
-            // await HttpContext.SignOutAsync("jwt");
-
-         // Store revoked token IDs on the server
-          
-           
-
-// Token is valid; proceed with authentication
-
-
-
+        
 
        [HttpPost("create")]
        public IActionResult CreateContacts([FromBody] ContactsModel contactsModel)

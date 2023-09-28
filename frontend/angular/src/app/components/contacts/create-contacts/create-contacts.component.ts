@@ -62,11 +62,7 @@ export class CreateContactsComponent {
         // this.getAll()
         this.router.navigate(['/contacts'])
 
-        // this.usersForm.setValue({
-        //   Nome: [''],
-        //   Email: [''],
-        //   Telefone: ['']
-        // })
+       
 
     })
 

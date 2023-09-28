@@ -11,7 +11,7 @@ import { Route, Router } from '@angular/router';
 })
 export class HomeUserauthService {
 
-  private getUser = "https://localhost:7087/api/contacts/auth";
+  private getUserAuth = "https://localhost:7087/api/contacts/auth";
   private getAllUser = "https://localhost:7087/api/auth/list";
 
   constructor(private http : HttpClient, private cookieService: CookieService, private router : Router) { }
@@ -19,15 +19,28 @@ export class HomeUserauthService {
    HttpOptions ={
     headers: new HttpHeaders( {
       'Contenty-Type': 'application/json',
-      'Accept':'application/json'
+      'Accept':'application/json',
 
     }), withCredentials: true
 
    }
 
    getAll(): Observable<any>{
+
     return this.http.get<any>(this.getAllUser)
+
    }
+
+   getUserAuthenticated(): Observable<UsersAuth>{
+
+    // if(localStorage.getItem('jwt') != null){
+
+      return this.http.get<UsersAuth>(this.getUserAuth)
+    // }
+
+    // return <any> null
+
+  }
 
   //  getUserInfoFromToken(token: string): { id: number; username: string } | null {
   //   try {
@@ -45,13 +58,13 @@ export class HomeUserauthService {
   //   }
   // }
 
-   getUserAuth(): Observable<any>
+   getUserAuths(): Observable<any>
    {
     const token = this.cookieService.get("jwt")
     if(token !== null){
      return JSON.parse(window.atob(token.split('.')[1]))
     }
-    return this.http.get<any>(this.getUser)    // return this.http.get<UsersAuth>(JSON.parse(user));
+    return this.http.get<any>(this.getUserAuth)    // return this.http.get<UsersAuth>(JSON.parse(user));
 
    }
 

@@ -17,12 +17,13 @@
 
           <thead>
             <tr>
-              <th scope="col">N° Tarefa</th>
-              <th scope="col">Nome da Tarefa</th>
+              <th scope="col">N°</th>
+              <th scope="col">Nome do Contato</th>
               <th scope="col">Email</th>
               <th scope="col">Celular</th>
             </tr>
           </thead>
+          
           <tbody>
             <tr *ngFor="let contact of users" >
               <th scope="row">{{ contact.id }}</th>

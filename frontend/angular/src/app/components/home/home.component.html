@@ -6,13 +6,13 @@
   <app-header></app-header>
 </div>
 
-<ul *ngFor="let user of users">
+<ul>
   <!-- Get the user as name plus id... from backend -->
   <li>
-    {{user.name}}
+    {{users.id}}
   </li>
   <li>
-    {{user.id}}
+    {{users.name}}
   </li>
 </ul>
 
