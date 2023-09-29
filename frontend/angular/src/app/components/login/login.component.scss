@@ -1,28 +1,123 @@
 .image-container {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  // overflow: hidden;
+  // background-color: rgba(33, 16, 1, 0.67);
+  background: linear-gradient(to right, rgba(33, 16, 1, 0.67),rgba(140, 90, 45, 0.67) );
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+
+
+.half-image-form{
+
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 7em;
+
+
+  border-radius: 20px;
+
 
 }
 
-.top h1 span{
+
+.image-half{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+
+}
+
+
+.image-half img {
+  width: 30em;
+  height: 30em;
+  display: flex;
+  object-fit: cover;
+  border-radius: 20px 0 0 20px;
+}
+
+.div-form{
+
+  background-color: rgba(255, 255, 255, 0.938);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30em;
+  border-radius: 0 20px 20px 0;
+}
+
+.top{
+ display: flex;
+ justify-content: center;
+}
+
+form h1 span{
+  font-weight: bolder;
+  color:rgb(186, 103, 21);
+  font-size: 2rem;
+  font-family: 'Young Serif', serif;
+
+
+}
+
+form {
   font-weight: bold;
-    text-shadow:0 0 55px;
-    color:rgb(0, 0, 0);
+  color:black;
 }
 
 form .decoration{
-  font-weight: bold;
-  text-shadow:0 0 35px;
-  color:rgb(250, 250, 250);
-}
-
-form .decoration-check{
-  font-weight: bold;
-  text-shadow:0 0 5px;
+  // font-weight: bolder;
   color:rgb(0, 0, 0);
+  // font-family: 'Lora', serif;
+  // font-family: 'Playfair Display', serif;
+  // font-family: 'Noto Serif NP Hmong', serif;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.03rem;
 }
 
+form input{
+
+  border-radius: 0.7em ;
+  padding: 0.5em 5em 0.6em 0;
+  text-align: left;
+
+}
+
+a {
+  text-decoration: none;
+}
+p{
+     font-family: 'Lora', serif;
+     color: black;
+     font-size: 0.9rem;
+
+}
+
+form button{
+  background-color:aliceblue ;
+  border-radius: 1em,;
+  padding: 0.8em 6.5em;
+  display: flex;
+  justify-content: center;
+  border-color: rgba(140, 90, 45, 0.67);
+  text-align: center;
+}
+
+button span{
+  display: flex;
+  justify-content: center;
+  font-family:'Libre Baskerville', serif;
+  color: black;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 1.3rem;
+}
 
 @media (max-width: 400px) {
   .top h1 {
@@ -38,11 +133,6 @@ form .decoration-check{
 
   }
 }
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 
-}
 
 

@@ -1,51 +1,71 @@
 
 
 <div class="image-container">
-  <div class="top">
-    <h1 class="pt-5 position-absolute start-50 translate-middle">
-      <span>Sistema de Tarefas - Do do List</span>
-    </h1>
+
+
+  <div class="half-image-form">
+
+    <section class="image-half">
+
+      <img src="../assets/images/laptop.jpg" alt="image-login">
+
+    </section>
+
+    <section class="div-form">
+
+      <!-- <main class="top">
+        <h1 class="pt-5 position-absolute start-50 translate-middle">
+          <span>LOGIN</span>
+        </h1>
+      </main> -->
+
+      <form class="" [formGroup]="formLogin" (submit)="sendLogin()">
+
+        <h1 class="top">
+          <span>LOGIN</span>
+        </h1>
+
+          <div class="form-group " >
+            <label for="exampleInputEmail1" class="form-label mt-3 fw-bold px-6">
+              <span class="decoration">Email</span>
+
+            </label>
+            <input type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="Digite seu e-mail">
+          </div>
+
+          <div class="mb-3 mt-3">
+            <label for="exampleInputPassword1" class="form-label fw-bold">
+              <span class="decoration"> Password
+              </span>
+
+            </label>
+            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Digite sua senha" >
+          </div>
+
+          <div>
+            <a [routerLink]="['/signup']">
+              <p class="">Doesn't you have login? Create now!</p>
+            </a>
+          </div>
+          <button type="submit" class="">
+            <span>
+              Sign In
+            </span>
+          </button>
+
+          <div>
+            <a [routerLink]="['/signup']">
+              <p class="">Forgot your password?</p>
+            </a>
+          </div>
+      </form>
+
+
+    </section>
+
   </div>
 
-  <img src="../assets/images/startup1.jpg" alt="">
 
-
-  <form class="d-flex align-items-center justify-content-center" [formGroup]="formLogin" (submit)="sendLogin()">
-    <div class="position-absolute top-50 start-50 translate-middle">
-
-      <div class="form-group " >
-        <label for="exampleInputEmail1" class="form-label mt-3 fw-bold">
-          <span class="decoration"> Email</span>
-
-        </label>
-        <input type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="Digite seu e-mail">
-      </div>
-
-      <div class="mb-3 mt-3">
-        <label for="exampleInputPassword1" class="form-label fw-bold">
-          <span class="decoration"> Password
-          </span>
-
-        </label>
-        <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Digite sua senha" >
-      </div>
-
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">
-          <span class="decoration"> Check me out</span>
-
-        </label>
-      </div>
-      <div>
-        <a [routerLink]="['/signup']">
-          <p class="">Doesn't have login? Create now!</p>
-        </a>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-
-  </form>
 
 
 
