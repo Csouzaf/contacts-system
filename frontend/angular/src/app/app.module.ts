@@ -21,6 +21,7 @@ import { ContactsService } from './components/services/contacts.service';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     RemoveContactsComponent,
     SignupComponent,
     LoginComponent,
+    SidebarComponent,
 
 
   ],

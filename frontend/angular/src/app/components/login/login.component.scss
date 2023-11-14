@@ -17,8 +17,6 @@
   justify-content: center;
   position: relative;
   top: 7em;
-
-
   border-radius: 20px;
 
 
@@ -40,6 +38,7 @@
   display: flex;
   object-fit: cover;
   border-radius: 20px 0 0 20px;
+  opacity: 0.8;
 }
 
 .div-form{
@@ -52,26 +51,38 @@
   border-radius: 0 20px 20px 0;
 }
 
-.top{
- display: flex;
- justify-content: center;
-}
+.div-form main h1{
 
-form h1 span{
+  font-size: 1.8rem;
+
+  position: relative;
+  top: 15px;
+  font-family: 'Young Serif', serif;
+  text-align: center;
   font-weight: bolder;
   color:rgb(186, 103, 21);
-  font-size: 2rem;
-  font-family: 'Young Serif', serif;
-
+  white-space:nowrap;
 
 }
+
+main {
+  position: relative;
+  left: 8em;
+  bottom: 190px;
+
+}
+
 
 form {
   font-weight: bold;
   color:black;
+  position: relative;
+  right: 12.3em;
+  top: 2em;
 }
 
 form .decoration{
+
   // font-weight: bolder;
   color:rgb(0, 0, 0);
   // font-family: 'Lora', serif;
@@ -79,34 +90,62 @@ form .decoration{
   // font-family: 'Noto Serif NP Hmong', serif;
   font-family: 'Libre Baskerville', serif;
   font-size: 1.03rem;
+
 }
+
 
 form input{
 
   border-radius: 0.7em ;
-  padding: 0.5em 5em 0.6em 0;
+  padding: 0.5em 1em 0.6em 0;
   text-align: left;
+
+}
+
+form input:focus{
+
+  border-color: rgba(53, 53, 53, 0.67);
+  border-width: 2px;
+
+
+}
+
+form input:hover{
+
+  border-color: rgba(216, 189, 189, 0.67);
+  border-width: 2px;
+
+
+}
+
+form input::placeholder{
+
+  text-shadow: 0 0 1.8px rgba(248, 244, 244, 0.853);
 
 }
 
 a {
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
 }
 p{
      font-family: 'Lora', serif;
      color: black;
-     font-size: 0.9rem;
+     font-size: 0.86rem;
 
 }
 
 form button{
   background-color:aliceblue ;
-  border-radius: 1em,;
-  padding: 0.8em 6.5em;
+  border-radius: 1.3em,;
+  padding: 0.8em 6.8em;
   display: flex;
   justify-content: center;
   border-color: rgba(140, 90, 45, 0.67);
   text-align: center;
+
 }
 
 button span{
@@ -118,6 +157,13 @@ button span{
   text-align: center;
   font-size: 1.3rem;
 }
+
+form button:hover{
+  background: linear-gradient(to right, rgba(33, 16, 1, 0.67),rgba(140, 90, 45, 0.67) );
+  border-color: aliceblue;
+}
+
+
 
 @media (max-width: 400px) {
   .top h1 {

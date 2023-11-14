@@ -1,21 +1,163 @@
+
+
 .image-container {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  // overflow: hidden;
+  // background-color: rgba(33, 16, 1, 0.67);
+  background: linear-gradient(to right, rgba(33, 16, 1, 0.67),rgba(140, 90, 45, 0.67) );
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+
+
+.half-image-form{
+
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 7em;
+
+
+  border-radius: 20px;
+
 
 }
 
-.top h1 span{
+
+.image-half{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+
+}
+
+
+.image-half img {
+  width: 30em;
+  height: 30em;
+  display: flex;
+  object-fit: cover;
+  border-radius: 20px 0 0 20px;
+  opacity: 0.8;
+}
+.image-half main{
+  object-fit: cover;
+}
+
+.div-form{
+
+  background-color: rgba(255, 255, 255, 0.938);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30em;
+  border-radius: 0 20px 20px 0;
+}
+
+.top{
+ display: flex;
+ justify-content: center;
+}
+
+form h2 span{
+  font-weight: bolder;
+  color:rgb(186, 103, 21);
+  font-size: 2rem;
+  font-family: 'Young Serif', serif;
+
+
+}
+
+form {
   font-weight: bold;
-  text-shadow:0 0 25px;
-  color:rgb(3, 12, 42);
+  color:black;
 }
 
 form .decoration{
-  font-weight: bold;
-  text-shadow:0 0 25px;
-  color:rgba(44, 40, 40, 0.979);
+
+  // font-weight: bolder;
+  color:rgb(0, 0, 0);
+  // font-family: 'Lora', serif;
+  // font-family: 'Playfair Display', serif;
+  // font-family: 'Noto Serif NP Hmong', serif;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.03rem;
+
 }
+
+form input{
+
+  border-radius: 0.7em ;
+  padding: 0.5em 5em 0.6em 0;
+  text-align: left;
+
+}
+
+form input:focus{
+
+  border-color: rgba(53, 53, 53, 0.67);
+  border-width: 2px;
+
+
+}
+
+form input:hover{
+
+  border-color: rgba(216, 189, 189, 0.67);
+  border-width: 2px;
+
+
+}
+
+form input::placeholder{
+
+  text-shadow: 0 0 1.8px rgba(248, 244, 244, 0.853);
+
+}
+
+a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+p{
+     font-family: 'Lora', serif;
+     color: black;
+     font-size: 0.9rem;
+
+}
+
+form button{
+  background-color:aliceblue ;
+  border-radius: 1.3em,;
+  padding: 0.8em 6.8em;
+  display: flex;
+  justify-content: center;
+  border-color: rgba(140, 90, 45, 0.67);
+  text-align: center;
+
+}
+
+button span{
+  display: flex;
+  justify-content: center;
+  font-family:'Libre Baskerville', serif;
+  color: black;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+form button:hover{
+  background: linear-gradient(to right, rgba(33, 16, 1, 0.67),rgba(140, 90, 45, 0.67) );
+  border-color: aliceblue;
+}
+
 
 
 @media (max-width: 400px) {
@@ -32,11 +174,6 @@ form .decoration{
 
   }
 }
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 
-}
 
 

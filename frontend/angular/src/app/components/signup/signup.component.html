@@ -1,66 +1,79 @@
 
 
   <div class="image-container">
-    <div class="top">
-      <h1 class="pt-5 position-absolute start-50 translate-middle">
-        <span>Signup - Gerenciamento de Contatos</span>
-      </h1>
+
+
+    <div class="half-image-form">
+
+      <section class="image-half">
+
+        <img src="../assets/images/student.jpg" alt="image-login">
+
+
+      </section>
+
+      <section class="div-form">
+
+        <form class="" [formGroup]="register" (submit)="sendUserRegistered()">
+
+          <h2 class="top">
+            <span>SIGN UP</span>
+          </h2>
+
+          <div class="form-group">
+            <label for="exampleNome" class="form-label fw-bold px-6">
+              <span class="decoration">Name</span>
+
+            </label>
+            <input type="text" class="form-control " id="exampleNome" aria-describedby="nameHelp" formControlName="name" placeholder="Digite o seu nome">
+          </div>
+
+          <div class="form-group mt-2 " >
+            <label for="exampleInputEmail1" class="form-label fw-bold">
+              <span class="decoration">Email</span>
+
+            </label>
+            <input type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="Digite seu e-mail">
+          </div>
+
+          <div class="form-group mt-2 ">
+            <label for="exampleInputCel" class="form-label fw-bold">
+              <span class="decoration">Telefone</span>
+            </label>
+
+            <input class="form-control"  type="tel" name="" id="exampleInputCel" formControlName = "telefone" placeholder="Digite seu número de telefone">
+
+          </div>
+
+          <div class="form-group mb-3 mt-2">
+            <label for="exampleInputPassword1" class="form-label fw-bold">
+              <span class="decoration"> Password</span>
+
+            </label>
+            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Digite sua senha" >
+          </div>
+
+
+            <button type="submit" class="">
+              <span>
+                Register
+              </span>
+            </button>
+
+        </form>
+
+
+      </section>
+
     </div>
 
-    <img src="../assets/images/background.jpg" alt="">
-
-    <form class="d-flex align-items-center justify-content-center" [formGroup]="register" (submit)="sendUserRegistered()">
-      <div class="position-absolute top-50 start-50 translate-middle">
-
-        <div class="form-group">
-          <label for="exampleNome" class="form-label fw-bold">
-            <span class="decoration">Name</span>
-
-          </label>
-          <input type="text" class="form-control " id="exampleNome" aria-describedby="nameHelp" formControlName="name" placeholder="Digite o seu nome">
-        </div>
-
-        <div class="form-group " >
-          <label for="exampleInputEmail1" class="form-label mt-3 fw-bold">
-            <span class="decoration"> Email</span>
-
-          </label>
-          <input type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="Digite seu e-mail">
-        </div>
-
-        <div class="mb-3 mt-3 ">
-          <label for="exampleInputCel">
-            <span class="decoration">Telefone</span>
-          </label>
-
-          <input class="form-control"  type="tel" name="" id="exampleInputCel" formControlName = "telefone" placeholder="Digite seu número de telefone">
-
-        </div>
-
-        <div class="mb-3 mt-3">
-          <label for="exampleInputPassword1" class="form-label fw-bold">
-            <span class="decoration"> Password
-            </span>
-
-          </label>
-          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Digite sua senha" >
-        </div>
-
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">
-            <span class="decoration"> Check me out</span>
-
-          </label>
-        </div>
 
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
 
-    </form>
 
   </div>
+
+
 
 
 

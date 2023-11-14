@@ -13,7 +13,7 @@ What you need to run the project about registration of people:
 2. **Run the Angular**:
 >Path until cd frontend and cd angular<br>
 >In your terminal locally, paste: **npx ng serve**<br>
->If the install was globlally: **ng serve**<br><br>
+>If the install was globally: **ng serve**<br><br>
 
 3. **Run .NET 6**:
 >Configuration SQL Server In appsetting.json: <br>

@@ -20,14 +20,17 @@ namespace api.Services
         }
         
 
-        public List<ContactsModel> findAll()
+        public List<ContactsModel> findAll(int userId)
         {
-            return _usersDbContextModel.contactsModel.ToList();
+            return _usersDbContextModel.contactsModel.Where(contact => contact.userRegisteredId == userId).ToList();
+
+            // return _usersDbContextModel.contactsModel.ToList();
         }
 
         public ContactsModel findById(int id)
         {
             return _usersDbContextModel.contactsModel.FirstOrDefault(x => x.Id == id);
+         
         }
 
         public  ContactsModel createUser(ContactsModel contactsModel)
@@ -44,7 +47,7 @@ namespace api.Services
           
         }
 
-        public  ContactsModel updateUser(ContactsModel contactsModel, int id)
+        public ContactsModel updateUser(ContactsModel contactsModel, int id)
         {
          
            ContactsModel findUsersById = findById(id);

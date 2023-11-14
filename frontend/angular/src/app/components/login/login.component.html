@@ -12,18 +12,14 @@
     </section>
 
     <section class="div-form">
-
-      <!-- <main class="top">
-        <h1 class="pt-5 position-absolute start-50 translate-middle">
-          <span>LOGIN</span>
+      <main>
+        <h1 class="top">
+          Gerenciamento de Contatos
         </h1>
-      </main> -->
+      </main>
 
       <form class="" [formGroup]="formLogin" (submit)="sendLogin()">
 
-        <h1 class="top">
-          <span>LOGIN</span>
-        </h1>
 
           <div class="form-group " >
             <label for="exampleInputEmail1" class="form-label mt-3 fw-bold px-6">
@@ -44,12 +40,12 @@
 
           <div>
             <a [routerLink]="['/signup']">
-              <p class="">Doesn't you have login? Create now!</p>
+              <p class="">Doesn't you have an account? Create now!</p>
             </a>
           </div>
           <button type="submit" class="">
             <span>
-              Sign In
+              Login
             </span>
           </button>
 

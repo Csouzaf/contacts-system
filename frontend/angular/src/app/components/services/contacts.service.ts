@@ -10,7 +10,7 @@ import { Users } from '../../../../models/Users';
 })
 export class ContactsService {
 
-  private contactsURL = "https://localhost:7087/api/contacts";
+  private contactsURL = "https://localhost:7087/api/contacts/allcontacts";
   private createContacts = "https://localhost:7087/api/contacts/create";
 
     httpOptions =
@@ -30,7 +30,7 @@ export class ContactsService {
     getUsersById(id: number): Observable<Users>
     {
       const apiUrl = `${this.contactsURL}/${id}`;
-      return this.http.get<Users>(apiUrl);
+      return this.http.get<Users>(apiUrl); //ver aqui
     }
 
     postUsers(users: Users): Observable<Users>

@@ -1,16 +1,9 @@
-using System.Net;
-using System;
 using api.Models;
 using api.Repository;
-
 using Microsoft.AspNetCore.Mvc;
-
 using api.Models.auth.Data;
-
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using api.auth.jwt;
 using api.Models.auth.Model;
 
@@ -36,14 +29,26 @@ namespace api.Controllers
             _usersAuthRepository = usersAuthRepository;
             // _usersRegisteredRepository = usersRegisteredRepository;
         }
-        
        
+       [HttpGet("allcontacts")]
+       public ActionResult<IEnumerable<ContactsModel>> GetAllContacts(){
+
+        //FIXME - Retrieve contacts from user autenticated
+            var userRetrievered = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if(userRetrievered != null && int.TryParse(userRetrievered, out int userId))
+            {
+                var contacts = _icontactsRepository.findAll(userId);
+                return Ok(contacts);
+            }
+            return Unauthorized();
+        }
+            
+
         [HttpGet("auth")]
         public ActionResult<UsersAuth> UserAuthenticated()
         {
 
-            //FIXME - _ihttpContextAccessor.HttpContext is null here, resolve
-
+            
             try{
                 
                 //FIXME - Get id user authenticated with NameIdentifier
@@ -108,7 +113,6 @@ namespace api.Controllers
                     if(verifyUserIsAuthenticated != null)
                     {
                            
-
                         
                         int findUserAuthById = int.Parse(verifyUserIsAuthenticated);
                         

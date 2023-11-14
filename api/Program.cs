@@ -122,6 +122,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//Pra evitar o cors, o backend precisa apontar para a rota do front e no front apontar para a rota do back
 app.UseCors(options => options.WithOrigins(new []{"http://localhost:7087","http://localhost:5075", "http://localhost:4200"})
     .AllowAnyHeader()
     .AllowAnyMethod()

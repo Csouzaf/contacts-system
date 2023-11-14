@@ -4,7 +4,8 @@ export interface Users
   nome: string
   email: string
   telefone: string
-  
+  userRegisteredId: number
+
 
 
 }

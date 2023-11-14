@@ -145,7 +145,7 @@ namespace api.Models.auth.Controllersv
             return Unauthorized();
        
         }  
-        [Authorize]
+        // [Authorize]
         [HttpGet("list")]
         public ActionResult<IEnumerable<UsersAuth>> GetUsers()
         {
