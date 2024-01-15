@@ -10,8 +10,8 @@ import { Users } from '../../../../models/Users';
 })
 export class ContactsService {
 
-  private contactsURL = "https://localhost:7087/api/contacts/allcontacts";
-  private createContacts = "https://localhost:7087/api/contacts/create";
+  private contactsURL = "https://localhost:7087/api/contacts/";
+  private createContacts = "https://localhost:7087/api/contacts/";
 
     httpOptions =
     {

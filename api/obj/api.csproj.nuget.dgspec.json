@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj": {}
+    "D:\\Arquivos e Programas\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj": {
+    "D:\\Arquivos e Programas\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
+        "projectUniqueName": "D:\\Arquivos e Programas\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
+        "projectPath": "D:\\Arquivos e Programas\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
         "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\obj\\",
+        "outputPath": "D:\\Arquivos e Programas\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -102,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.415\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.418\\RuntimeIdentifierGraph.json"
         }
       }
     }

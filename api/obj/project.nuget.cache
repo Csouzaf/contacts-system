@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vDiZ2sqfbMpEqKvXpr1RakDCu5QWyH60WqHlWiV2x3kucwNfaLXX/+mJMafw5zganawGa04SA0pa/zqI/SEOyg==",
+  "dgSpecHash": "j80tTWVhiALshuC9Wm1ruwe2YP0E+P72g0xQ42grjWoRXW+iWDVvUnlTvJZfKDo/U71fdjg7wAtj5QhSeV1b6Q==",
   "success": true,
-  "projectFilePath": "D:\\OneDrive\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
+  "projectFilePath": "D:\\Arquivos e Programas\\Programação\\Csharp\\Nova pasta\\contacts-system\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\csouz\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
